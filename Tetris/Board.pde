@@ -1,6 +1,7 @@
 class Board {
   LinkedList<int[]> grid;
   int score,lines,level,speed;
+  
   Board(int w, int h){
     grid = new LinkedList<int[]>();
     for(int i = 0; i < h;i++){
