@@ -1,8 +1,7 @@
-
 import java.util.*;
 import java.io.*;
 
-Board TetrisBoard = new Board(300,600);  
+Board TetrisBoard = new Board(10,24);  
 
 class TetrisGame{
   
@@ -10,10 +9,10 @@ class TetrisGame{
 
 void setup() {
   size(800,600);
-  
+  TetrisBoard.randomFill();
 }
 
 void draw() {
   background(255);
-  TetrisBoard.drawBox();
+  TetrisBoard.display();
 }
