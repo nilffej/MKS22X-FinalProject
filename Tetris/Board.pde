@@ -10,5 +10,14 @@ class Board {
     lines = 0;
     level = 1;
   }
+ 
+  void drawBox(){
+    translate(100,60);
+    fill(110,110,110);
+    rect(0,0,200,480);
+  }
   
+  void display(){
+    drawBox();
+  }
 }

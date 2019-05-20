@@ -1,22 +1,19 @@
-<<<<<<< HEAD
+
 import java.util.*;
 import java.io.*;
-void setup(){
-  
-}
 
-void draw(){
+Board TetrisBoard = new Board(300,600);  
 
-=======
 class TetrisGame{
-
-
+  
 }
 
 void setup() {
   size(800,600);
+  
 }
+
 void draw() {
   background(255);
->>>>>>> aa32470c5d214ee3486beaf5b5442e97fe2f6724
+  TetrisBoard.drawBox();
 }
