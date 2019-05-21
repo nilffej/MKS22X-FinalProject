@@ -12,13 +12,14 @@ abstract class Piece{
   }
   
   void moveLeft(){
-    x -= 20;
+    x -= 1;
+    
   }
   void moveRight(){
-    x += 20;
+    x += 1;
   }
   void moveDown(){
-    y += 20;
+    y += 1;
   }
   
   abstract void isColliding();
