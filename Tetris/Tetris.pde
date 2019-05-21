@@ -13,6 +13,8 @@ void setup() {
 }
 
 void draw() {
+  int s = second();
   background(255);
   TetrisBoard.display();
+  System.out.println(s);
 }

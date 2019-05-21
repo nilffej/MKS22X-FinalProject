@@ -64,7 +64,13 @@ class Board {
   }
 
   void clearLine(int row) {
-    
+    int[][] newGrid = new int[gridh][gridw];
+    for (int i = grid.length; i > row; i--){
+      newGrid[i] = grid[i];
+    }
+    for (int i = row-1; i >= 0; i--){
+      newGrid[i] = grid[i];
+    }
   }
 
   void display() {
