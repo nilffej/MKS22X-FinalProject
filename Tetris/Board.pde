@@ -50,27 +50,34 @@ class Board {
   void randomFill() {
     for (int x = 0; x < grid.length; x++) {
       for (int y = 0; y < grid[x].length; y++) {
-        if (r.nextInt(10) == 1) {
+        if (r.nextInt(3) == 1) {
           grid[x][y] = r.nextInt(7) + 1;
         }
       }
     }
-    for (int x = 0; x < grid.length; x++) {
+    show2D(grid);
+  }
+
+  void show2D(int[][] arr) {
+    System.out.println("\n");
+    for (int x = 0; x < arr.length; x++) {
       System.out.println("\n");
-      for (int y = 0; y < grid[x].length; y++) {
-        System.out.print(grid[x][y] + " ");
+      for (int y = 0; y < arr[x].length; y++) {
+        System.out.print(arr[x][y] + " ");
       }
     }
+    System.out.println("\n");
   }
 
   void clearLine(int row) {
     int[][] newGrid = new int[gridh][gridw];
-    for (int i = grid.length; i > row; i--){
+    for (int i = grid.length-1; i > row; i--) {
       newGrid[i] = grid[i];
     }
-    for (int i = row-1; i >= 0; i--){
-      newGrid[i] = grid[i];
+    for (int i = row-1; i >= 0; i--) {
+      newGrid[i+1] = grid[i];
     }
+    grid = newGrid;
   }
 
   void display() {
