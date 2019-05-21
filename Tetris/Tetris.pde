@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-Board TetrisBoard = new Board(10,24);  
+Board TetrisBoard = new Board(24,10);  
 
 class TetrisGame{
   
