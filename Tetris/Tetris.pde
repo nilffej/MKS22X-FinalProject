@@ -14,7 +14,5 @@ void setup() {
 
 void draw() {
   background(255);
-}
-
   TetrisBoard.display();
-}
+}  
