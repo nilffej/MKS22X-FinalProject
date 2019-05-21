@@ -22,7 +22,7 @@ abstract class Piece{
     y += 1;
   }
   
-  abstract void isColliding();
+  abstract boolean isColliding();
   abstract void rot();
   
 }
