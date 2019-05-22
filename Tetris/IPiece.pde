@@ -13,25 +13,25 @@ class IPiece extends Piece {
   
   void rot(){
     if(orientation == 0){
-      if(b.grid[x][y-1] == 0 && b.grid[x][y] == 0 && b.grid[x][y+1] == 0 && b.grid[x][y+2] == 0){
+      if(b.grid[x][y-1] == 0 && b.grid[x][y+1] == 0 && b.grid[x][y+2] == 0){
         y+=1; //0 -> 1
       }
     }
     
     else if(orientation == 1){
-      if(b.grid[x-2][y] == 0 && b.grid[x-1][y] == 0 && b.grid[x][y] == 0 && b.grid[x+1][y] == 0){
+      if(b.grid[x-2][y] == 0 && b.grid[x-1][y] == 0 && b.grid[x+1][y] == 0){
         x-=1; //1 -> 2
       }
     }
     else if(orientation == 2){
-      if(b.grid[x][y-2] == 0 && b.grid[x][y-1] == 0 && b.grid[x][y] == 0 && b.grid[x][y+1] == 0){
+      if(b.grid[x][y-2] == 0 && b.grid[x][y-1] == 0 && b.grid[x][y+1] == 0){
         y-=1; //2 -> 3
       }
     }
     
-    else if(orientation == 3){ 
-      if(b.grid[x-1][y] == 0 && b.grid[x][y] == 0 && b.grid[x+1][y] == 0 && b.grid[x+2][y] == 0){
-        x+=1; //3 -> 1
+    else { //orientation == 3
+      if(b.grid[x-1][y] == 0 && b.grid[x+1][y] == 0 && b.grid[x+2][y] == 0){
+        x+=1; //3 -> 0
       }
     }
     
