@@ -4,19 +4,26 @@ import java.io.*;
 class Board {
   int[][] grid;
   int gridh, gridw;
-  Piece[] pieces = {new OPiece(0,5,this)};
+  Piece[] pieces = {new OPiece(0, 5, this), new IPiece(0, 5, this)};
   int score, lines, level, speed;
   Piece currentPiece, savedPiece, nextPiece;
   Random r = new Random();
 
   Board(int h, int w) {
-    grid = new int[h][w];
+    grid = new int[h+1][w];
     gridh = h;
     gridw = w;
     score = 0;
     lines = 0;
     level = 1;
     currentPiece = pieces[r.nextInt(pieces.length)];
+    for (int i = 0; i < grid[h].length; i++) {
+      grid[h][i] = -1;
+    }
+  }
+
+  int gridHeight() {
+    return grid.length - 1;
   }
 
   void drawBoard() {
@@ -26,7 +33,7 @@ class Board {
   }
 
   void showBoard() {
-    for (int x = 0; x < grid.length; x++) {
+    for (int x = 0; x < gridHeight(); x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
           fill(255, 255, 102);
@@ -51,7 +58,7 @@ class Board {
   }
 
   void randomFill() {
-    for (int x = 0; x < grid.length; x++) {
+    for (int x = 0; x < gridHeight(); x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (r.nextInt(3) == 1) {
           grid[x][y] = r.nextInt(7) + 1;
@@ -73,17 +80,16 @@ class Board {
   }
 
   void clearLine(int row) {
-    int[][] newGrid = new int[gridh][gridw];
-    for (int i = grid.length-1; i > row; i--) {
-      newGrid[i] = grid[i];
+    for (int i = row; i > 0; i--){
+      grid[i] = grid[i-1];
     }
-    for (int i = row-1; i >= 0; i--) {
-      newGrid[i+1] = grid[i];
-    }
-    grid = newGrid;
+    grid[0] = new int[gridw];
   }
-  
-  void playPiece(Piece p){
+
+  void playPiece(Piece p) {
+    nextPiece = pieces[r.nextInt(pieces.length)];
+    while (!currentPiece.isColliding()) {
+    }
   }
 
   void display() {
