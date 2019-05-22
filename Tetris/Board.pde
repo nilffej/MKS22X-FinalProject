@@ -4,7 +4,9 @@ import java.io.*;
 class Board {
   int[][] grid;
   int gridh, gridw;
+  Piece[] pieces = {new OPiece(0,5,this)};
   int score, lines, level, speed;
+  Piece currentPiece, savedPiece, nextPiece;
   Random r = new Random();
 
   Board(int h, int w) {
@@ -14,6 +16,7 @@ class Board {
     score = 0;
     lines = 0;
     level = 1;
+    currentPiece = pieces[r.nextInt(pieces.length)];
   }
 
   void drawBoard() {
@@ -78,6 +81,9 @@ class Board {
       newGrid[i+1] = grid[i];
     }
     grid = newGrid;
+  }
+  
+  void playPiece(Piece p){
   }
 
   void display() {

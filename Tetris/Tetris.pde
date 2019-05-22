@@ -2,7 +2,8 @@ import java.util.*;
 import java.io.*;
 
 Board TetrisBoard = new Board(24, 10);  
-int nexts = 2;
+int nexts = 1;
+Random r = new Random();
 
 class TetrisGame {
 }
@@ -18,7 +19,7 @@ void draw() {
   TetrisBoard.display();
   System.out.println(time + " " + nexts);
   if (time == nexts) {
-    TetrisBoard.clearLine(23);
-    nexts += 2;
+    TetrisBoard.clearLine(r.nextInt(24));
+    nexts += 1;
   }
 }
