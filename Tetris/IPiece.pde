@@ -55,5 +55,5 @@ class IPiece extends Piece {
     return b.grid[x][y+3]!=0;
   }
   
-  void display(){}
+  void update(){}
 }

@@ -26,5 +26,5 @@ class LPiece extends Piece {
     return true;
   }
   
-  void display(){}
+  void update(){}
 }

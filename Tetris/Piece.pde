@@ -26,5 +26,5 @@ abstract class Piece {
   
   abstract boolean isColliding();
   abstract void rot();
-  abstract void display();
+  abstract void update();
 }

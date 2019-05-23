@@ -11,7 +11,7 @@ class OPiece extends Piece {
   void rot() {
   }
   
-  void display() {
+  void update() {
     b.grid[x][y] = 1;
     b.grid[x][y+1] = 1;
     b.grid[x+1][y] = 1;

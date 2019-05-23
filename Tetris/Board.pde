@@ -88,11 +88,9 @@ class Board {
   }
 
   void playPiece(int m, int s) {
-    currentPiece.display();
-    if (m == s){
-      System.out.println(m + " " + s);
-      currentPiece.moveDown();
-    }
+    System.out.println(m + " " + s);
+    currentPiece.moveDown();
+    currentPiece.update();
   }
 
   void setup() {
@@ -100,7 +98,9 @@ class Board {
   }
 
   void display(int m, int s) {
-    playPiece(m,s);
+    if (m == s){
+      playPiece(m,s);
+    }
     drawBoard();
     showBoard();
   }
