@@ -19,7 +19,6 @@ abstract class Piece {
   }
   void moveDown() {
     x += 1;
-    System.out.println("Shifted down.");
   }
   String toString(){
     return "Piece";
