@@ -26,8 +26,15 @@ class IPiece extends Piece {
         c-=1; //2 -> 3
       }
     } else { //orientation == 3
-      if (b.grid[x-1][y] == 0 && b.grid[x+1][y] == 0 && b.grid[x+2][y] == 0) {
-        r-=1; //3 -> 0
+      if (b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r][c+2] == 0) {
+        undisplay();
+        c+=1; //3 -> 0
+        cords[0] = r;
+        cords[1] = c-2;
+        cords[2] = r;
+        cords[3] = c-1;
+        cords[4] = r;
+        cords[5] = c+1;
       }
     }
 
