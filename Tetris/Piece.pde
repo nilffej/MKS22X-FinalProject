@@ -4,7 +4,7 @@ abstract class Piece {
   int orientation;
   Board b;
 
-  Piece(int x, int y, Board b) {
+  Piece(int x, int y, Board b) {  
     this.x = x;
     this.y = y;
     this.b = b;
@@ -12,14 +12,20 @@ abstract class Piece {
   }
 
   void moveLeft() {
-    x -= 1;
+    y -= 1;
   }
   void moveRight() {
-    x += 1;
-  }
-  void moveDown() {
     y += 1;
   }
+  void moveDown() {
+    x += 1;
+    System.out.println("Shifted down.");
+  }
+  String toString(){
+    return "Piece";
+  }
+  
   abstract boolean isColliding();
   abstract void rot();
+  abstract void display();
 }

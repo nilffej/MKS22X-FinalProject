@@ -4,7 +4,7 @@ import java.io.*;
 class Board {
   int[][] grid;
   int gridh, gridw;
-  Piece[] pieces = {new OPiece(0, 5, this), new IPiece(0, 5, this)};
+  Piece[] pieces = {new OPiece(0, 4, this)};
   int score, lines, level, speed;
   Piece currentPiece, savedPiece, nextPiece;
   Random r = new Random();
@@ -17,6 +17,7 @@ class Board {
     lines = 0;
     level = 1;
     currentPiece = pieces[r.nextInt(pieces.length)];
+    nextPiece = pieces[r.nextInt(pieces.length)];
     for (int i = 0; i < grid[h].length; i++) {
       grid[h][i] = -1;
     }
@@ -80,19 +81,26 @@ class Board {
   }
 
   void clearLine(int row) {
-    for (int i = row; i > 0; i--){
+    for (int i = row; i > 0; i--) {
       grid[i] = grid[i-1];
     }
     grid[0] = new int[gridw];
   }
 
-  void playPiece(Piece p) {
-    nextPiece = pieces[r.nextInt(pieces.length)];
-    while (!currentPiece.isColliding()) {
+  void playPiece(int m, int s) {
+    currentPiece.display();
+    if (m == s){
+      System.out.println(m + " " + s);
+      currentPiece.moveDown();
     }
   }
 
-  void display() {
+  void setup() {
+    currentPiece = pieces[r.nextInt(pieces.length)];
+  }
+
+  void display(int m, int s) {
+    playPiece(m,s);
     drawBoard();
     showBoard();
   }

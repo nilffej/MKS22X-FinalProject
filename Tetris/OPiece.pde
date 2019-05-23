@@ -5,9 +5,18 @@ class OPiece extends Piece {
   }
 
   boolean isColliding() { //return if the spaces under are empty
-    return b.grid[x][y+2]!=0 && b.grid[x+1][y+2]!=0;
+    return b.grid[x][y]!=0 || b.grid[x+2][y+1]!=0;
   }
 
   void rot() {
   }
+  
+  void display() {
+    b.grid[x][y] = 1;
+    b.grid[x][y+1] = 1;
+    b.grid[x+1][y] = 1;
+    b.grid[x+1][y+1] = 1;
+  }
+  
+  
 }

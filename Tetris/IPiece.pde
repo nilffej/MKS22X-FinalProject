@@ -54,4 +54,6 @@ class IPiece extends Piece {
     //orientation == 3
     return b.grid[x][y+3]!=0;
   }
+  
+  void display(){}
 }
