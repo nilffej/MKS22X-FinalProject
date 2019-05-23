@@ -1,24 +1,25 @@
 abstract class Piece {
-  int x;
-  int y;
+  int r;
+  int c;
   int orientation;
   Board b;
+  int[] cords;
 
-  Piece(int x, int y, Board b) {  
-    this.x = x;
-    this.y = y;
+  Piece(int r, int c, Board b) {  
+    this.r = r;
+    this.c = c;
     this.b = b;
     orientation = 0;
   }
 
   void moveLeft() {
-    y -= 1;
+    c -= 1;
   }
   void moveRight() {
-    y += 1;
+    c += 1;
   }
   void moveDown() {
-    x += 1;
+    r += 1;
   }
   String toString(){
     return "Piece";
@@ -26,5 +27,6 @@ abstract class Piece {
   
   abstract boolean isColliding();
   abstract void rot();
-  abstract void update();
+  abstract void display();
+  abstract void undisplay();
 }
