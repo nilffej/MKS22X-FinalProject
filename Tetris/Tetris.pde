@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-Board TetrisBoard = new Board(24, 10);
+Board TetrisBoard = new Board(25, 10);
 Random r = new Random();
 int s = 1;
 

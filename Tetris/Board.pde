@@ -27,14 +27,9 @@ class Board {
     return grid.length - 1;
   }
 
-  void drawBoard() {
-    translate(100, 60);
-    fill(110, 110, 110);
-    rect(0, 0, 20*gridw, 20*gridh);
-  }
-
   void showBoard() {
-    for (int x = 0; x < gridHeight(); x++) {
+    translate(40, 60);
+    for (int x = 1; x < gridHeight(); x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
           fill(255, 255, 102);
@@ -87,8 +82,7 @@ class Board {
     grid[0] = new int[gridw];
   }
 
-  void playPiece(int m, int s) {
-    System.out.println(m + " " + s);
+  void playPiece() {
     if (currentPiece.isColliding()){
       currentPiece = pieces[r.nextInt(pieces.length)];
     }
@@ -103,9 +97,8 @@ class Board {
 
   void display(int m, int s) {
     if (m == s){
-      playPiece(m,s);
+      playPiece();
     }
-    drawBoard();
     showBoard();
   }
 }
