@@ -8,14 +8,12 @@ class LPiece extends Piece {
    orientation = 3 --> upright - upsidedown L
    */
 
-  LPiece(int x, int y, Board b) {
-    super(x, y, b);
+  LPiece(int r, int c, Board b) {
+    super(r, c, b);
   }
 
   void rot() {
     if (orientation == 0) {
-      if (b.grid[x][y-1] == 0) {
-      }
     } else if (orientation == 1) {
     } else if (orientation == 2) {
     } else { //orientation == 3
@@ -26,5 +24,6 @@ class LPiece extends Piece {
     return true;
   }
   
-  void updatexx(){}
+  void display(){}
+  void undisplay(){}
 }

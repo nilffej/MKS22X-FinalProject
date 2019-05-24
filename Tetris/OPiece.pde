@@ -17,6 +17,6 @@ class OPiece extends Piece {
     b.grid[r+1][c] = 1;
     b.grid[r+1][c+1] = 1;
   }
-  
+  void undisplay(){}
   
 }

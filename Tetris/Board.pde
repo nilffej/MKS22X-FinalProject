@@ -4,7 +4,7 @@ import java.io.*;
 class Board {
   int[][] grid;
   int gridh, gridw;
-  Piece[] pieces = {new OPiece(0, 4, this)};
+  Piece[] pieces = {new IPiece(0, 5, this)};
   int score, lines, level, speed;
   Piece currentPiece, savedPiece, nextPiece;
   Random r = new Random();
@@ -89,8 +89,12 @@ class Board {
 
   void playPiece(int m, int s) {
     System.out.println(m + " " + s);
+    if (currentPiece.isColliding()){
+      currentPiece = pieces[r.nextInt(pieces.length)];
+    }
+    currentPiece.undisplay();
     currentPiece.moveDown();
-    currentPiece.update();
+    currentPiece.display();
   }
 
   void setup() {

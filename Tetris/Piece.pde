@@ -14,12 +14,15 @@ abstract class Piece {
 
   void moveLeft() {
     c -= 1;
+    cords = new int[]{r, c-2, r, c-1, r, c+1};
   }
   void moveRight() {
     c += 1;
+    cords = new int[]{r, c-2, r, c-1, r, c+1};
   }
   void moveDown() {
     r += 1;
+    cords = new int[]{r, c-2, r, c-1, r, c+1};
   }
   String toString(){
     return "Piece";
