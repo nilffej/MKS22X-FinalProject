@@ -67,22 +67,18 @@ class IPiece extends Piece {
 
   boolean isColliding() {
     if (r == b.gridHeight()-1) return true;
-    return true;
-    /*
+    
     if (orientation == 0) {
-     return b.grid[x-2][y+1] != 0 && b.grid[x-1][y+1] != 0 &&
-     b.grid[x][y+1] != 0 && b.grid[x+1][y+1] != 0;
+      return b.grid[r+1][c-2] != 0 && b.grid[r+1][c-1] != 0 && b.grid[r+1][c] != 0 && b.grid[r+1][c+1] != 0; 
      }
      if (orientation == 1) {
-     return b.grid[x][y+2] != 0;
+       return b.grid[r+2][c] != 0;
      }
      if (orientation == 2) {
-     return b.grid[x-1][y+1] != 0 && b.grid[x][y+1] != 0 &&
-     b.grid[x+1][y+1] != 0 && b.grid[x][y+1] != 0;
+       return b.grid[r+1][c-1] != 0 && b.grid[r+1][c] != 0 && b.grid[r+1][c+1] != 0 && b.grid[r+1][c+2] != 0; 
      }
      //orientation == 3
-     return b.grid[x][y+3]!=0;
-     */
+     return b.grid[r+3][c] != 0;
   }
 
   void undisplay() {
