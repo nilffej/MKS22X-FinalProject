@@ -4,7 +4,6 @@ import java.io.*;
 class Board {
   int[][] grid;
   int gridh, gridw;
-  Piece[] pieces = {new IPiece(0, 5, this)};
   int score, lines, level, speed;
   Piece currentPiece, savedPiece, nextPiece;
   Random r = new Random();
@@ -16,8 +15,8 @@ class Board {
     score = 0;
     lines = 0;
     level = 1;
-    currentPiece = pieces[r.nextInt(pieces.length)];
-    nextPiece = pieces[r.nextInt(pieces.length)];
+    currentPiece = newPiece();
+    nextPiece = newPiece();
     for (int i = 0; i < grid[h].length; i++) {
       grid[h][i] = -1;
     }
@@ -28,7 +27,7 @@ class Board {
   }
 
   void showBoard() {
-    translate(40, 60);
+    translate(100, 40);
     for (int x = 1; x < gridHeight(); x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
@@ -83,21 +82,31 @@ class Board {
   }
 
   void playPiece() {
-    if (currentPiece.isColliding()){
-      currentPiece = pieces[r.nextInt(pieces.length)];
+    if (currentPiece.isColliding()) {
+      currentPiece = nextPiece;
+      nextPiece = newPiece();
+    } else {
+      currentPiece.undisplay();
+      currentPiece.moveDown();
+      currentPiece.display();
+      if (currentPiece.r == 6){
+        currentPiece.rot();
+      }
     }
-    currentPiece.undisplay();
-    currentPiece.moveDown();
-    currentPiece.display();
   }
 
   void setup() {
-    currentPiece = pieces[r.nextInt(pieces.length)];
+  }
+
+  Piece newPiece(){
+    Piece p = new IPiece(0,5,this);
+    return p;
   }
 
   void display(int m, int s) {
-    if (m == s){
+    if (m == s) {
       playPiece();
+      show2D(grid);
     }
     showBoard();
   }

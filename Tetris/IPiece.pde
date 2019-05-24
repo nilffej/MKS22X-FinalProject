@@ -45,7 +45,7 @@ class IPiece extends Piece {
         cords[1] = c;
         cords[2] = r+1;
         cords[3] = c;
-        cords[4] = r+2;
+        cords[4] = r+1;
         cords[5] = c;
         display();
       }
@@ -61,21 +61,19 @@ class IPiece extends Piece {
         cords[5] = c+1;
         display();
       }
-      orientation = (orientation + 1)%4;
     }
+    orientation = (orientation + 1)%4;
   }
 
   boolean isColliding() {
-    if (r == b.gridHeight()-1) return true;
-    
     if (orientation == 0) {
-      return b.grid[r+1][c-2] != 0 && b.grid[r+1][c-1] != 0 && b.grid[r+1][c] != 0 && b.grid[r+1][c+1] != 0; 
+      return b.grid[r+1][c-2] != 0 || b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0; 
      }
      if (orientation == 1) {
        return b.grid[r+2][c] != 0;
      }
      if (orientation == 2) {
-       return b.grid[r+1][c-1] != 0 && b.grid[r+1][c] != 0 && b.grid[r+1][c+1] != 0 && b.grid[r+1][c+2] != 0; 
+       return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0 || b.grid[r+1][c+2] != 0; 
      }
      //orientation == 3
      return b.grid[r+3][c] != 0;
