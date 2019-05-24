@@ -10,17 +10,44 @@ class LPiece extends Piece {
 
   LPiece(int r, int c, Board b) {
     super(r, c, b);
+    cords = new int[]{r,c-1,r,c+1,r-1,c+1};
   }
 
   void rot() {
     if (orientation == 0) {
-    } else if (orientation == 1) {
-    } else if (orientation == 2) {
-    } else { //orientation == 3
+      if(b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0 && b.grid[r+1][c+1] == 0){
+        undisplay();
+        cords[0] = r-1;
+        cords[1] = c;
+        cords[2] = r+1;
+        cords[3] = c;
+        cords[4] = r+1;
+        cords[5] = c+1;
+        display();
+      }
+    }
+    else if (orientation == 1) {
+      if(b.grid[r+1][c-1] == 0 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0){
+        undisplay();
+        cords[0] = r+1;
+        cords[1] = c-1;
+        cords[2] = r;
+        cords[3] = c-1;
+        cords[4] = r;
+        cords[5] = c+1;
+        display();
+      }
+    } 
+    else if (orientation == 2) {
+      if(b.grid[r-1][c-1] == 0
+    } 
+    else { //orientation == 3
+    
     }
   }
 
   boolean isColliding() {
+    if (r == b.gridHeight()-1) return true;
     return true;
   }
   
