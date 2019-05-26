@@ -45,7 +45,7 @@ class IPiece extends Piece {
         cords[1] = c;
         cords[2] = r+1;
         cords[3] = c;
-        cords[4] = r+1;
+        cords[4] = r+2;
         cords[5] = c;
         display();
       }
@@ -79,17 +79,10 @@ class IPiece extends Piece {
      return b.grid[r+3][c] != 0;
   }
 
-  void undisplay() {
-    for (int i = 0; i < cords.length; i += 2) {
-      b.grid[cords[i]][cords[i+1]] = 0;
-    }
-     b.grid[r][c] = 0;
-  }
-
   void display() {
     for (int i = 0; i < cords.length; i += 2) {
       b.grid[cords[i]][cords[i+1]] = 2;
     }
-    b.grid[r][c] = 3;
+    b.grid[r][c] = 2;
   }
 }

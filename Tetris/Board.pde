@@ -91,6 +91,13 @@ class Board {
       currentPiece.display();
       if (currentPiece.r == 6){
         currentPiece.rot();
+        currentPiece.moveLeft();
+      }
+      if(currentPiece.r == 8){
+        currentPiece.moveRight();
+        currentPiece.rot();
+        currentPiece.rot();
+        currentPiece.rot();
       }
     }
   }
@@ -99,7 +106,8 @@ class Board {
   }
 
   Piece newPiece(){
-    Piece p = new IPiece(0,5,this);
+    //Piece p = new IPiece(0,5,this);
+    Piece p = new LPiece(1,5,this);
     return p;
   }
 
@@ -110,7 +118,7 @@ class Board {
     }
     showBoard();
     fill(255,0,0);
-    textSize(150);
-    text(""+currentPiece.orientation,500,100);
+    textSize(50);
+    text("Orientation: "+currentPiece.orientation,300,100);
   }
 }

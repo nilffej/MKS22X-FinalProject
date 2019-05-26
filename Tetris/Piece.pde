@@ -13,23 +13,30 @@ abstract class Piece {
   }
 
   void moveLeft() {
+    undisplay();
     c -= 1;
     for(int i = 1; i<cords.length;i+=2){
       cords[i]--;
     }
+    display();
   }
   void moveRight() {
+    undisplay();
     c += 1;
     for(int i = 1; i<cords.length;i+=2){
       cords[i]++;
     }
+    display();
   }
   void moveDown() {
+    undisplay();
     r += 1;
     for(int i = 0; i<cords.length;i+=2){
       cords[i]++;
     }
+    display();
   }
+
   String toString(){
     return "Piece";
   }
@@ -37,5 +44,10 @@ abstract class Piece {
   abstract boolean isColliding();
   abstract void rot();
   abstract void display();
-  abstract void undisplay();
+  void undisplay() {
+    for (int i = 0; i < cords.length; i += 2) {
+      b.grid[cords[i]][cords[i+1]] = 0;
+    }
+     b.grid[r][c] = 0;
+  }
 }
