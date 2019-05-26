@@ -14,15 +14,21 @@ abstract class Piece {
 
   void moveLeft() {
     c -= 1;
-    cords = new int[]{r, c-2, r, c-1, r, c+1};
+    for(int i = 1; i<cords.length;i+=2){
+      cords[i]--;
+    }
   }
   void moveRight() {
     c += 1;
-    cords = new int[]{r, c-2, r, c-1, r, c+1};
+    for(int i = 1; i<cords.length;i+=2){
+      cords[i]++;
+    }
   }
   void moveDown() {
     r += 1;
-    cords = new int[]{r, c-2, r, c-1, r, c+1};
+    for(int i = 0; i<cords.length;i+=2){
+      cords[i]++;
+    }
   }
   String toString(){
     return "Piece";

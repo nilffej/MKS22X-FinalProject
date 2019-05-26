@@ -109,5 +109,8 @@ class Board {
       show2D(grid);
     }
     showBoard();
+    fill(255,0,0);
+    textSize(150);
+    text(""+currentPiece.orientation,500,100);
   }
 }

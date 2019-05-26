@@ -39,7 +39,7 @@ class LPiece extends Piece {
       }
     } 
     else if (orientation == 2) {
-      if(b.grid[r-1][c-1] == 0
+      //if(b.grid[r-1][c-1] == 0
     } 
     else { //orientation == 3
     

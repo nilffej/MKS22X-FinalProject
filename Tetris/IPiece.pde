@@ -90,6 +90,6 @@ class IPiece extends Piece {
     for (int i = 0; i < cords.length; i += 2) {
       b.grid[cords[i]][cords[i+1]] = 2;
     }
-    b.grid[r][c] = 2;
+    b.grid[r][c] = 3;
   }
 }
