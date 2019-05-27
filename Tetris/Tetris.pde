@@ -5,6 +5,7 @@ Board TetrisBoard = new Board(25, 10);
 Random r = new Random();
 int s = 1;
 
+
 class TetrisGame {
 }
 
@@ -20,4 +21,8 @@ void draw() {
   if (m == s) {
     s++;
   }
+}
+
+void keyPressed(){
+  TetrisBoard.currentPiece.keyPressed();
 }

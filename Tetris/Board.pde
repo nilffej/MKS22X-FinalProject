@@ -91,30 +91,26 @@ class Board {
       currentPiece.display();
       if (currentPiece.r == 6){
         currentPiece.rot();
-        currentPiece.moveLeft();
-      }
-      if(currentPiece.r == 8){
-        currentPiece.moveRight();
         currentPiece.rot();
         currentPiece.rot();
-        currentPiece.rot();
+        //currentPiece.moveLeft();
       }
     }
   }
 
   void setup() {
   }
-
+  
   Piece newPiece(){
-    //Piece p = new IPiece(0,5,this);
-    Piece p = new LPiece(1,5,this);
+    Piece p = new IPiece(0,5,this);
+    //Piece p = new LPiece(1,5,this);
     return p;
   }
 
   void display(int m, int s) {
     if (m == s) {
       playPiece();
-      show2D(grid);
+      //show2D(grid);
     }
     showBoard();
     fill(255,0,0);

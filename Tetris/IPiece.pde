@@ -68,15 +68,39 @@ class IPiece extends Piece {
   boolean isColliding() {
     if (orientation == 0) {
       return b.grid[r+1][c-2] != 0 || b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0; 
-     }
-     if (orientation == 1) {
-       return b.grid[r+2][c] != 0;
-     }
-     if (orientation == 2) {
-       return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0 || b.grid[r+1][c+2] != 0; 
-     }
-     //orientation == 3
-     return b.grid[r+3][c] != 0;
+    }
+    if (orientation == 1) {
+      return b.grid[r+2][c] != 0;
+    }
+    if (orientation == 2) {
+      return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0 || b.grid[r+1][c+2] != 0; 
+    }
+    //orientation == 3
+    return b.grid[r+3][c] != 0;
+  }
+  
+  void keyPressed(){
+    if (keyCode == LEFT) {
+      if(orientation == 0 && (c <= 2 || b.grid[r][c-3] != 0)) return;
+      if(orientation == 2 && (c <= 1 || b.grid[r][c-2] != 0)) return;
+      if(orientation == 1 || orientation == 3){
+        for(int i =1; i < cords.length; i+=2){
+          if(cords[i] <= 0 || b.grid[cords[i-1]][cords[i]-1]!=0 || 
+          c <= 0 || b.grid[r][c-1] != 0) return;
+        }
+      }
+      moveLeft();
+    } else if (keyCode == RIGHT) {
+      if(orientation == 0 && (c >= b.grid[0].length-2 || b.grid[r][c+2] != 0)) return;
+      if(orientation == 2 && (c >= b.grid[0].length-3 || b.grid[r][c+3] != 0)) return;
+      if(orientation == 1 || orientation == 3){
+        for(int i =1; i < cords.length; i+=2){
+          if(cords[i] >= b.grid[0].length-1 || b.grid[cords[i-1]][cords[i]+1]!=0 || 
+          c >= b.grid[0].length-1 || b.grid[r][c+1] != 0) return;
+        }
+      }
+      moveRight();
+    }
   }
 
   void display() {

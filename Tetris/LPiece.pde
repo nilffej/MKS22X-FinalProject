@@ -80,6 +80,10 @@ class LPiece extends Piece {
     return b.grid[r][c-1] != 0 || b.grid[r+2][c] != 0;
   }
   
+  void keyPressed(){
+  
+  }
+  
   void display() {
     for (int i = 0; i < cords.length; i += 2) {
       b.grid[cords[i]][cords[i+1]] = 3;

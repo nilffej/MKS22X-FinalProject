@@ -41,6 +41,7 @@ abstract class Piece {
     return "Piece";
   }
   
+  abstract void keyPressed();
   abstract boolean isColliding();
   abstract void rot();
   abstract void display();
