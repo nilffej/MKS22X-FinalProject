@@ -8,17 +8,17 @@ class Board {
   Piece currentPiece, savedPiece, nextPiece;
   Random r = new Random();
 
-  Board(int h, int w) {
-    grid = new int[h+1][w];
-    gridh = h;
-    gridw = w;
+  Board() {
+    grid = new int[26][10];
+    gridh = 25;
+    gridw = 10;
     score = 0;
     lines = 0;
     level = 1;
     currentPiece = newPiece();
     nextPiece = newPiece();
-    for (int i = 0; i < grid[h].length; i++) {
-      grid[h][i] = -1;
+    for (int i = 0; i < grid[25].length; i++) {
+      grid[25][i] = -1;
     }
   }
 
@@ -89,12 +89,6 @@ class Board {
       currentPiece.undisplay();
       currentPiece.moveDown();
       currentPiece.display();
-      if (currentPiece.r == 6){
-        currentPiece.rot();
-        currentPiece.rot();
-        currentPiece.rot();
-        //currentPiece.moveLeft();
-      }
     }
   }
 
@@ -102,7 +96,7 @@ class Board {
   }
   
   Piece newPiece(){
-    Piece p = new IPiece(0,5,this);
+    Piece p = new IPiece(1,5,this);
     //Piece p = new LPiece(1,5,this);
     return p;
   }
