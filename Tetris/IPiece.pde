@@ -184,7 +184,7 @@ class IPiece extends Piece {
       moveRight();
     } else if (keyCode == UP) {
       rot();
-    } else if (keyCode == CONTROL) {
+    } else if (key == ' ') {
       while (!isColliding()){
         moveDown();
       }

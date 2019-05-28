@@ -14,5 +14,6 @@ class OPiece extends Piece {
   }
 
   void keyPressed() {
+    
   }
 }
