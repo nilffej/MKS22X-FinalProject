@@ -14,6 +14,20 @@ class OPiece extends Piece {
   }
 
   void keyPressed() {
-    
+    if (keyCode == LEFT) {
+      if (c == 0) return;
+      moveLeft();
+    } else if (keyCode == RIGHT) {
+      if (c + 1 == 9) return;
+      moveRight();
+    } else if (keyCode == UP) {
+      rot();
+    } else if (key == ' ') {
+      while (!isColliding()) {
+        moveDown();
+      }
+    } else if (keyCode == DOWN) {
+      moveDown();
+    }
   }
 }

@@ -74,11 +74,22 @@ class Board {
     System.out.println("\n");
   }
 
+  void clearLine() {
+    for (int r = 0; r < grid.length-1; r++) {
+      boolean space = true;
+      for (int c = 0; c < grid[r].length && space; c++) {
+        if (grid[r][c] == 0) space = false;
+      }
+      if (space) clearLine(r);
+    }
+  }
+
   void clearLine(int row) {
     for (int i = row; i > 0; i--) {
       grid[i] = grid[i-1];
     }
     grid[0] = new int[gridw];
+    lines++;
   }
 
   void playPiece(int m, int s) {
@@ -108,6 +119,7 @@ class Board {
       //show2D(grid);
     }
     showBoard();
+    clearLine();
     fill(255, 0, 0);
     textSize(50);
     text("Orientation: "+currentPiece.orientation, 300, 100);
