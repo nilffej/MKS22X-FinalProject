@@ -161,7 +161,6 @@ class IPiece extends Piece {
   }
 
   void keyPressed() {
-    if (r < 2) return;
     if (keyCode == LEFT) {
       if (orientation == 0 && (c <= 2 || b.grid[r][c-3] != 0)) return;
       if (orientation == 2 && (c <= 1 || b.grid[r][c-2] != 0)) return;
@@ -184,7 +183,7 @@ class IPiece extends Piece {
       moveRight();
     } else if (keyCode == UP) {
       rot();
-    } else if (keyCode == CONTROL) {
+    } else if (key == ' ') {
       while (!isColliding()){
         moveDown();
       }

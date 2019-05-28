@@ -94,9 +94,13 @@ class Board {
   }
   
   Piece newPiece(){
-    Piece p = new IPiece(1,5,this);
-    //Piece p = new LPiece(1,5,this);
-    return p;
+    int temp = r.nextInt(2);
+    if (temp == 0) {
+      return new IPiece(2,5,this);
+    }
+    else {
+      return new OPiece(0,5,this);
+    }
   }
 
   void display(int m, int s) {
