@@ -11,6 +11,7 @@ class LPiece extends Piece {
   LPiece(int r, int c, Board b) {
     super(r, c, b);
     cords = new int[]{r,c-1,r,c+1,r-1,c+1};
+    col = 3;
   }
 
   void rot() {
@@ -82,12 +83,5 @@ class LPiece extends Piece {
   
   void keyPressed(){
   
-  }
-  
-  void display() {
-    for (int i = 0; i < cords.length; i += 2) {
-      b.grid[cords[i]][cords[i+1]] = 3;
-    }
-    b.grid[r][c] = 3;
   }
 }

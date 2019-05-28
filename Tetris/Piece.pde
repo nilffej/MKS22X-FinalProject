@@ -1,7 +1,7 @@
 abstract class Piece {
   int r;
   int c;
-  int orientation;
+  int orientation, col;
   Board b;
   int[] cords;
 
@@ -15,7 +15,7 @@ abstract class Piece {
   void moveLeft() {
     undisplay();
     c -= 1;
-    for(int i = 1; i<cords.length;i+=2){
+    for (int i = 1; i<cords.length; i+=2) {
       cords[i]--;
     }
     display();
@@ -23,7 +23,7 @@ abstract class Piece {
   void moveRight() {
     undisplay();
     c += 1;
-    for(int i = 1; i<cords.length;i+=2){
+    for (int i = 1; i<cords.length; i+=2) {
       cords[i]++;
     }
     display();
@@ -31,24 +31,31 @@ abstract class Piece {
   void moveDown() {
     undisplay();
     r += 1;
-    for(int i = 0; i<cords.length;i+=2){
+    for (int i = 0; i<cords.length; i+=2) {
       cords[i]++;
     }
     display();
   }
 
-  String toString(){
+  String toString() {
     return "Piece";
   }
-  
+
   abstract void keyPressed();
   abstract boolean isColliding();
   abstract void rot();
-  abstract void display();
+
+  void display() {
+    for (int i = 0; i < cords.length; i += 2) {
+      b.grid[cords[i]][cords[i+1]] = col;
+    }
+    b.grid[r][c] = col;
+  }
+
   void undisplay() {
     for (int i = 0; i < cords.length; i += 2) {
       b.grid[cords[i]][cords[i+1]] = 0;
     }
-     b.grid[r][c] = 0;
+    b.grid[r][c] = 0;
   }
 }

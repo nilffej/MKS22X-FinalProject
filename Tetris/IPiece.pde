@@ -10,6 +10,7 @@ class IPiece extends Piece {
   IPiece(int r, int c, Board b) { 
     super(r, c, b);
     cords = new int[]{r, c-2, r, c-1, r, c+1};
+    col = 2;
   }
 
   void rot() {
@@ -101,12 +102,5 @@ class IPiece extends Piece {
       }
       moveRight();
     }
-  }
-
-  void display() {
-    for (int i = 0; i < cords.length; i += 2) {
-      b.grid[cords[i]][cords[i+1]] = 2;
-    }
-    b.grid[r][c] = 2;
   }
 }
