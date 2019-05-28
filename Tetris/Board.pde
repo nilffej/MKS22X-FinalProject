@@ -92,22 +92,25 @@ class Board {
 
   void setup() {
   }
-  
-  Piece newPiece(){
-    Piece p = new IPiece(1,5,this);
-    //Piece p = new LPiece(1,5,this);
-    return p;
+
+  Piece newPiece() {
+    int temp = r.nextInt(2);
+    if (temp == 0) {
+      return new IPiece(2, 5, this);
+    } else {
+      return new OPiece(0, 5, this);
+    }
   }
 
   void display(int m, int s) {
     if (m == s) {
-      playPiece(m,s);
+      playPiece(m, s);
       //show2D(grid);
     }
     showBoard();
-    fill(255,0,0);
+    fill(255, 0, 0);
     textSize(50);
-    text("Orientation: "+currentPiece.orientation,300,100);
-    text("Lines cleared: "+lines,300,200);
+    text("Orientation: "+currentPiece.orientation, 300, 100);
+    text("Lines cleared: "+lines, 300, 200);
   }
 }
