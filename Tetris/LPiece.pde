@@ -27,7 +27,7 @@ class LPiece extends Piece {
         display();
       }
     } else if (orientation == 1) {
-      if (b.grid[r+1][c-1] == 0 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0) {
+      if (c > 0 && c < b.grid[0].length-1 && b.grid[r+1][c-1] == 0 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0) {
         undisplay();
         cords[0] = r+1;
         cords[1] = c-1;
@@ -49,7 +49,7 @@ class LPiece extends Piece {
         display();
       }
     } else { //orientation == 3
-      if (b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r-1][c+1] == 0) {
+      if (c > 0 && c < b.grid[0].length-1 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r-1][c+1] == 0) {
         undisplay();
         cords[0] = r;
         cords[1] = c-1;
