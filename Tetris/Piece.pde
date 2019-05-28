@@ -29,12 +29,14 @@ abstract class Piece {
     display();
   }
   void moveDown() {
-    undisplay();
-    r += 1;
-    for (int i = 0; i<cords.length; i+=2) {
-      cords[i]++;
+    if (!isColliding()){
+      undisplay();
+      r += 1;
+      for (int i = 0; i<cords.length; i+=2) {
+        cords[i]++;
+      }
+      display();
     }
-    display();
   }
 
   String toString() {

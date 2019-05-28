@@ -81,7 +81,7 @@ class Board {
     grid[0] = new int[gridw];
   }
 
-  void playPiece() {
+  void playPiece(int m, int s) {
     if (currentPiece.isColliding()) {
       currentPiece = nextPiece;
       nextPiece = newPiece();
@@ -103,7 +103,7 @@ class Board {
 
   void display(int m, int s) {
     if (m == s) {
-      playPiece();
+      playPiece(m,s);
       //show2D(grid);
     }
     showBoard();

@@ -26,6 +26,7 @@ class IPiece extends Piece {
         cords[4]=r+1;
         cords[5]=c;
         display();
+        orientation = (orientation + 1)%4;
       }
     } else if (orientation == 1) {
       if (c == 0) {
@@ -39,6 +40,7 @@ class IPiece extends Piece {
           cords[4]=r;
           cords[5]=c+2;
           display();
+          orientation = (orientation + 1)%4;
         }
       } else if (c == 1) {
         if (b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r][c+2] == 0) {
@@ -50,6 +52,7 @@ class IPiece extends Piece {
           cords[4]=r;
           cords[5]=c+2;
           display();
+          orientation = (orientation + 1)%4;
         }
       } else if (c == 9) {
         if (b.grid[r][c-1] == 0 && b.grid[r][c-2] == 0 && b.grid[r][c-3] == 0) {
@@ -62,6 +65,7 @@ class IPiece extends Piece {
           cords[4]=r;
           cords[5]=c+2;
           display();
+          orientation = (orientation + 1)%4;
         }
       } else if (b.grid[r][c-2] == 0 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0) {
         undisplay();
@@ -73,6 +77,7 @@ class IPiece extends Piece {
         cords[4]=r;
         cords[5]=c+2;
         display();
+        orientation = (orientation + 1)%4;
       }
     } else if (orientation == 2) {
       if (b.grid[r-2][c] == 0 && b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0) {
@@ -85,6 +90,7 @@ class IPiece extends Piece {
         cords[4] = r+2;
         cords[5] = c;
         display();
+        orientation = (orientation + 1)%4;
       }
     } else { //orientation == 3
       if (c == 0) {
@@ -98,6 +104,19 @@ class IPiece extends Piece {
           cords[4] = r;
           cords[5] = c+1;
           display();
+          orientation = (orientation + 1)%4;
+        }
+      } else if (c == 8) {
+        if (b.grid[r][c-3] == 0 && b.grid[r][c-2] == 0 && b.grid[r][c-1] == 0) {
+          undisplay();
+          cords[0] = r;
+          cords[1] = c-2;
+          cords[2] = r;
+          cords[3] = c-1;
+          cords[4] = r;
+          cords[5] = c+1;
+          display();
+          orientation = (orientation + 1)%4;
         }
       } else if (c == 9) {
         if (b.grid[r][c-3] == 0 && b.grid[r][c-2] == 0 && b.grid[r][c-1] == 0) {
@@ -110,10 +129,11 @@ class IPiece extends Piece {
           cords[4] = r;
           cords[5] = c+1;
           display();
+          orientation = (orientation + 1)%4;
         }
       } else if (b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r][c+2] == 0) {
         undisplay();
-        r+=1; //3 -> 0
+        c+=1; //3 -> 0
         cords[0] = r;
         cords[1] = c-2;
         cords[2] = r;
@@ -121,9 +141,9 @@ class IPiece extends Piece {
         cords[4] = r;
         cords[5] = c+1;
         display();
+        orientation = (orientation + 1)%4;
       }
     }
-    orientation = (orientation + 1)%4;
   }
 
   boolean isColliding() {
@@ -141,6 +161,7 @@ class IPiece extends Piece {
   }
 
   void keyPressed() {
+    if (r < 2) return;
     if (keyCode == LEFT) {
       if (orientation == 0 && (c <= 2 || b.grid[r][c-3] != 0)) return;
       if (orientation == 2 && (c <= 1 || b.grid[r][c-2] != 0)) return;
@@ -163,6 +184,12 @@ class IPiece extends Piece {
       moveRight();
     } else if (keyCode == UP) {
       rot();
+    } else if (keyCode == CONTROL) {
+      while (!isColliding()){
+        moveDown();
+      }
+    } else if (keyCode == DOWN) {
+      moveDown();
     }
   }
 }
