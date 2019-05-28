@@ -112,5 +112,6 @@ class Board {
     fill(255,0,0);
     textSize(50);
     text("Orientation: "+currentPiece.orientation,300,100);
+    text("Lines cleared: "+lines,300,200);
   }
 }
