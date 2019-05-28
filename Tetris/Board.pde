@@ -86,9 +86,7 @@ class Board {
       currentPiece = nextPiece;
       nextPiece = newPiece();
     } else {
-      currentPiece.undisplay();
       currentPiece.moveDown();
-      currentPiece.display();
     }
   }
 

@@ -16,7 +16,7 @@ class IPiece extends Piece {
   void rot() {
     System.out.println(r + " " + c);
     if (orientation == 0) {
-      if (b.grid[r-2][c] == 0 && b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0) {
+      if (b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0 && b.grid[r+2][c] == 0) {
         undisplay();
         r+=1; //0 -> 1
         cords[0]=r-2;
