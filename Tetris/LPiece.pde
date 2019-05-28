@@ -64,7 +64,6 @@ class LPiece extends Piece {
   }
 
   boolean isColliding() {
-    if (r == b.gridHeight()-1) return true;
     if (orientation == 0) {
       return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0;
     }
