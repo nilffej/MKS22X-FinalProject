@@ -18,45 +18,25 @@ class LPiece extends Piece {
     if (orientation == 0) {
       if (b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0 && b.grid[r+1][c+1] == 0) {
         undisplay();
-        cords[0] = r-1;
-        cords[1] = c;
-        cords[2] = r+1;
-        cords[3] = c;
-        cords[4] = r+1;
-        cords[5] = c+1;
+        cords = new int[]{r-1,c,r+1,c,r+1,c+1};
         display();
       }
     } else if (orientation == 1) {
       if (c > 0 && c < b.grid[0].length-1 && b.grid[r+1][c-1] == 0 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0) {
         undisplay();
-        cords[0] = r+1;
-        cords[1] = c-1;
-        cords[2] = r;
-        cords[3] = c-1;
-        cords[4] = r;
-        cords[5] = c+1;
+        cords = new int[]{r+1,c-1,r,c-1,r,c+1};
         display();
       }
     } else if (orientation == 2) {
       if (b.grid[r-1][c-1] == 0 && b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0) {
         undisplay();
-        cords[0] = r-1;
-        cords[1] = c-1;
-        cords[2] = r-1;
-        cords[3] = c;
-        cords[4] = r+1;
-        cords[5] = c;
+        cords = new int[]{r-1,c-1,r-1,c,r+1,c};
         display();
       }
     } else { //orientation == 3
       if (c > 0 && c < b.grid[0].length-1 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r-1][c+1] == 0) {
         undisplay();
-        cords[0] = r;
-        cords[1] = c-1;
-        cords[2] = r;
-        cords[3] = c+1;
-        cords[4] = r-1;
-        cords[5] = c+1;
+        cords = new int[]{r,c-1,r,c+1,r-1,c+1};
         display();
       }
     }
@@ -78,7 +58,17 @@ class LPiece extends Piece {
   }
 
   boolean checkLeft() {
-    return true;
+    if(orientation == 0){
+      return c <= 1 || b.grid[r][c-2] != 0 || b.grid[r-1][c] != 0;
+    }
+    if(orientation == 1){
+      return c <= 0 || b.grid[r-1][c-1] != 0 || b.grid[r][c-1] != 0 || b.grid[r+1][c-1] != 0;
+    }
+    if(orientation == 2){
+      return c <= 1 || b.grid[r][c-2] != 0 || b.grid[r+1][c-2] != 0;
+    }
+    //orientation = 3
+    return c <= 1 || b.grid[r-1][c-2] != 0 || b.grid[r][c-1] != 0 || b.grid [r+1][c-1] !=0;
   }
 
   boolean checkRight() {
