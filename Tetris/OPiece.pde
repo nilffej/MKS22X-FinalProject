@@ -13,13 +13,13 @@ class OPiece extends Piece {
   void rot() {
   }
 
-  boolean checkLeft() {
-    if (r == 0 || b.grid[r][c-1] != 0 || b.grid[r+1][c-1] != 0) return false;
+  boolean checkLeft(){
+    if(c == 0 || b.grid[r][c-1] != 0 || b.grid[r+1][c-1] != 0) return false;
     return true;
   }
 
-  boolean checkRight() {
-    if (r == 8 || b.grid[r][c+2] != 0) return false;
+  boolean checkRight(){
+    if(c == b.grid.length-2 || b.grid[r][c+2] != 0 || b.grid[r+1][c+2] != 0) return false;
     return true;
   }
 }
