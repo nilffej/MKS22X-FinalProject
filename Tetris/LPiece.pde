@@ -77,6 +77,11 @@ class LPiece extends Piece {
     return b.grid[r][c-1] != 0 || b.grid[r+2][c] != 0;
   }
 
-  void keyPressed() {
+  boolean checkLeft() {
+    return true;
+  }
+
+  boolean checkRight() {
+    return true;
   }
 }
