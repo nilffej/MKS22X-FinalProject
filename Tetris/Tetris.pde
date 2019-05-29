@@ -3,7 +3,7 @@ import java.io.*;
 
 Board TetrisBoard = new Board();
 Random r = new Random();
-int s = 1;
+int s = 2;
 
 
 class TetrisGame {
@@ -11,16 +11,16 @@ class TetrisGame {
 
 void setup() {
   size(800, 600);
-  TetrisBoard.setup();
 }
 
 void draw() {
-  int m = millis() / 1000;
+  int m = millis() / 100;
   background(255);
   TetrisBoard.display(m, s);
   if (m == s) {
-    s++;
+    s+=2;
   }
+  System.out.println(m +" "+s);
 }
 
 void keyPressed(){

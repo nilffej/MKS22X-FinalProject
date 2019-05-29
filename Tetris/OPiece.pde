@@ -13,29 +13,13 @@ class OPiece extends Piece {
   void rot() {
   }
 
-  void keyPressed() {
-    if (keyCode == LEFT) {
-      if (c == 0) return;
-      moveLeft();
-    } else if (keyCode == RIGHT) {
-      if (c + 1 == 9) return;
-      moveRight();
-    } else if (keyCode == UP) {
-      rot();
-    } else if (key == ' ') {
-      while (!isColliding()) {
-        moveDown();
-      }
-    } else if (keyCode == DOWN) {
-      moveDown();
-    }
-  }
-
   boolean checkLeft() {
+    if (r == 0 || b.grid[r][c-1] != 0 || b.grid[r+1][c-1] != 0) return false;
     return true;
   }
 
   boolean checkRight() {
+    if (r == 8 || b.grid[r][c+2] != 0) return false;
     return true;
   }
 }
