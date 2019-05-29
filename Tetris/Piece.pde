@@ -29,7 +29,7 @@ abstract class Piece {
     display();
   }
   void moveDown() {
-    if (!isColliding()){
+    if (!isColliding()) {
       undisplay();
       r += 1;
       for (int i = 0; i<cords.length; i+=2) {
@@ -43,7 +43,24 @@ abstract class Piece {
     return "Piece";
   }
 
-  abstract void keyPressed();
+  void keyPressed() {
+    if (r < 2) return;
+    if (keyCode == LEFT && checkLeft()) moveLeft();
+    else if (keyCode == RIGHT && checkRight()) {
+      moveRight();
+    } else if (keyCode == UP) {
+      rot();
+    } else if (key == ' ') {
+      while (!isColliding()) {
+        moveDown();
+      }
+    } else if (keyCode == DOWN) {
+      moveDown();
+    }
+  }
+
+  abstract boolean checkLeft();
+  abstract boolean checkRight();
   abstract boolean isColliding();
   abstract void rot();
 
