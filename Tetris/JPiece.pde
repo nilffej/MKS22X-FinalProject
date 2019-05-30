@@ -51,10 +51,10 @@ class JPiece extends Piece {
       return b.grid[r+2][c] != 0 || b.grid[r][c+1] != 0;
     }
     if (orientation == 2) {
-      return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+2] != 0;
+      return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+2][c+1] != 0;
     }
     //orientation == 3
-    return b.grid[r][c-1] != 0 || b.grid[r+2][c] != 0;
+    return b.grid[r+2][c-1] != 0 || b.grid[r+2][c] != 0;
   }
 
   boolean checkLeft() {
