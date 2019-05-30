@@ -73,15 +73,15 @@ class LPiece extends Piece {
 
   boolean checkRight() {
     if(orientation == 0){
-      return !(c >= b.grid.length-2 || b.grid[r][c+2] != 0 || b.grid[r-1][c+2] != 0);
+      return !(c >= b.grid[0].length-2 || b.grid[r][c+2] != 0 || b.grid[r-1][c+2] != 0);
     }
     if(orientation == 1){
-      return !(c >= b.grid.length-2 || b.grid[r-1][c+1] != 0 || b.grid[r][c+1] != 0 || b.grid[r+1][c+2] != 0);
+      return !(c >= b.grid[0].length-2 || b.grid[r-1][c+1] != 0 || b.grid[r][c+1] != 0 || b.grid[r+1][c+2] != 0);
     }
     if(orientation == 2){
-      return !(c >= b.grid.length-2 || b.grid[r][c+2] != 0 || b.grid[r+1][c] != 0);
+      return !(c >= b.grid[0].length-2 || b.grid[r][c+2] != 0 || b.grid[r+1][c] != 0);
     }
     //orientation = 3
-    return !(c >= b.grid.length-1 || b.grid[r-1][c+1] != 0 || b.grid[r][c+1] != 0 || b.grid [r+1][c+1] !=0);
+    return !(c >= b.grid[0].length-1 || b.grid[r-1][c+1] != 0 || b.grid[r][c+1] != 0 || b.grid [r+1][c+1] !=0);
   }
 }
