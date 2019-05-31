@@ -50,3 +50,4 @@ Michael:
 Michael:
   Fixed the left and right checks for the LPiece
   Finished the rotation and collision for the JPiece
+  Finished the rotation, collision, and left and right checks for ZPiece
