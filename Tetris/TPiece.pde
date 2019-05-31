@@ -21,7 +21,16 @@ class TPiece extends Piece {
         orientation = 1;
       }
     } else if (orientation == 1) {
-      if (checkCords(new int[]{r,c-1})) {
+      if(c==0){
+        if(checkCords(new int[]{r+1,c+1,r,c+2})){
+          undisplay();
+          c++;
+          cords = new int[]{r,c-1,r+1,c,r,c+1};
+          display();
+          orientation = 2;
+        }
+      }
+      else if (checkCords(new int[]{r,c-1})) {
         undisplay();
         cords = new int[]{r, c-1, r, c+1, r+1, c};
         display();
