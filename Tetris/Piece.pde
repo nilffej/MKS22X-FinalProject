@@ -11,6 +11,15 @@ abstract class Piece {
     this.b = b;
     orientation = 0;
   }
+  
+  boolean checkCords(int[] cords){
+    for(int i = 0; i < cords.length; i+= 2){
+      int r = cords[i];
+      int c = cords[i+1];
+      if(r < 0 || r > b.grid.length-1 || c < 0 || c > b.grid[0].length-1 || b.grid[r][c] != 0) return false;
+    }
+    return true;
+  }
 
   void moveLeft() {
     undisplay();
