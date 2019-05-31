@@ -20,7 +20,6 @@ void draw() {
   if (m == s) {
     s+=2;
   }
-  System.out.println(m +" "+s);
 }
 
 void keyPressed(){

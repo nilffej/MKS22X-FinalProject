@@ -19,7 +19,7 @@ class OPiece extends Piece {
   }
 
   boolean checkRight(){
-    if(c == b.grid.length-2 || b.grid[r][c+2] != 0 || b.grid[r+1][c+2] != 0) return false;
+    if(c == 8 || b.grid[r][c+2] != 0 || b.grid[r+1][c+2] != 0) return false;
     return true;
   }
 }
