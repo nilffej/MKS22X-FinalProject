@@ -43,23 +43,31 @@ class ZPiece extends Piece {
 
   boolean isColliding() {
     if (orientation == 0) {
-      return b.grid[r+1][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r][c+1] != 0;
+      return b.grid[r][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0;
     }
     if (orientation == 1) {
-      return b.grid[r+1][c] != 0 || b.grid[r+2][c+1] != 0;
+      return b.grid[r+2][c] != 0 || b.grid[r+1][c+1] != 0;
     }
     if (orientation == 2) {
-      return b.grid[r+2][c-1] != 0 || b.grid[r+2][c] != 0 || b.grid[r+1][c+1] != 0;
+      return b.grid[r+1][c-1] != 0 || b.grid[r+2][c] != 0 || b.grid[r+2][c+1] != 0;
     }
     //orientation == 3
-    return b.grid[r+1][c-1] != 0 || b.grid[r+2][c] != 0;
+    return b.grid[r+2][c-1] != 0 || b.grid[r+1][c] != 0;
   }
 
   boolean checkLeft() {
-    return true;
+    if (orientation == 0) return checkCords(new int[]{r-1,c-2,r,c-1});
+    if (orientation == 1) return checkCords(new int[]{r-1,c,r,c-1,r+1,c-1});
+    if (orientation == 2) return checkCords(new int[]{r,c-2,r+1,c-1});
+    //orientation == 3
+    return checkCords(new int[]{r-1,c-1,r,c-2,r+1,c-2});
   }
 
   boolean checkRight() {
-    return true;
+    if (orientation == 0) return checkCords(new int[]{r-1,c+1,r,c+2});
+    if (orientation == 1) return checkCords(new int[]{r-1,c+2,r,c+2,r+1,c+1});
+    if (orientation == 2) return checkCords(new int[]{r,c+1,r+1,c+2});
+    //orientation == 3
+    return checkCords(new int[]{r-1,c+1,r,c+1,r+1,c});
   }
 }
