@@ -56,6 +56,18 @@ class SPiece extends Piece {
   }
 
   boolean checkLeft() {
+    if (orientation == 0) {
+      return checkCords(new int[]{r,c-2,r+1,c-1});
+    }
+    if (orientation == 1) {
+      return checkCords(new int[]{r,c-1,r-1,c-1,r+1,c});
+    }
+    if (orientation == 2) {
+      return checkCords(new int[]{r,c-1,r-1,c-2});
+    }
+    if (orientation == 3) {
+      return checkCords(new int[]{r,c-2,r-1,c-2,r+1,c-1});
+    }
     return true;
   }
 

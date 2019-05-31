@@ -102,11 +102,17 @@ class Board {
   }
 
   Piece newPiece() {
-    int temp = r.nextInt(2);
+    int temp = r.nextInt(5);
     if (temp == 0) {
       return new IPiece(1, 5, this);
-    } else {
+    } else if (temp == 1) {
       return new OPiece(0, 5, this);
+    } else if (temp == 2) {
+      return new LPiece(1, 5, this);
+    } else if (temp == 3) {
+      return new ZPiece(1, 5, this);
+    } else {
+      return new SPiece(1,5,this);
     }
   }
 
@@ -115,6 +121,7 @@ class Board {
       playPiece(m, s);
       //show2D(grid);
       clearLine();
+      System.out.println(Arrays.toString(currentPiece.cords));
     }
     showBoard();
     fill(255, 0, 0);
