@@ -20,27 +20,30 @@ class LPiece extends Piece {
         undisplay();
         cords = new int[]{r-1,c,r+1,c,r+1,c+1};
         display();
+        orientation = 1;
       }
     } else if (orientation == 1) {
       if (c > 0 && b.grid[r+1][c-1] == 0 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0) {
         undisplay();
         cords = new int[]{r+1,c-1,r,c-1,r,c+1};
         display();
+        orientation = 2;
       }
     } else if (orientation == 2) {
       if (r > 0 && b.grid[r-1][c-1] == 0 && b.grid[r-1][c] == 0 && b.grid[r+1][c] == 0) {
         undisplay();
         cords = new int[]{r-1,c-1,r-1,c,r+1,c};
         display();
+        orientation = 3;
       }
     } else { //orientation == 3
       if (c < b.grid[0].length-1 && b.grid[r][c-1] == 0 && b.grid[r][c+1] == 0 && b.grid[r-1][c+1] == 0) {
         undisplay();
         cords = new int[]{r,c-1,r,c+1,r-1,c+1};
         display();
+        orientation = 0;
       }
     }
-    orientation = (orientation + 1)%4;
   }
 
   boolean isColliding() {
