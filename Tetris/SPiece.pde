@@ -15,30 +15,40 @@ class SPiece extends Piece {
   void rot() {
     if (orientation == 0) {
       if (b.grid[r-1][c] == 0 && b.grid[r][c+1] == 0 && b.grid[r+1][c+1] == 0) {
+        System.out.println("SUCCESS.");
         undisplay();
         cords = new int[]{r-1, c, r, c+1, r+1, c+1};
         display();
+        orientation = (orientation + 1)%4;
       }
     } else if (orientation == 1) {
-      if (b.grid[r+1][c-1] == 0 && b.grid[r+1][c] == 0 && b.grid[r][c+1] == 0) {
+      if (c == 0 && checkCords(new int[]{r, c+1, r, c+2, r+1, c, r+1, c+1})) {
+        undisplay();
+        c++;
+        cords = new int[]{r+1, c-1, r+1, c, r, c+1};
+        display();
+        orientation = (orientation + 1)%4;
+      } else if (b.grid[r+1][c-1] == 0 && b.grid[r+1][c] == 0 && b.grid[r][c+1] == 0) {
         undisplay();
         cords = new int[]{r+1, c-1, r+1, c, r, c+1};
         display();
+        orientation = (orientation + 1)%4;
       }
     } else if (orientation == 2) {
       if (b.grid[r-1][c-1] == 0 && b.grid[r][c-1] == 0 && b.grid[r+1][c] == 0) {
         undisplay();
         cords = new int[]{r-1, c-1, r, c-1, r+1, c};
         display();
+        orientation = (orientation + 1)%4;
       }
     } else { //orientation == 3
       if (b.grid[r][c-1] == 0 && b.grid[r-1][c] == 0 && b.grid[r-1][c+1] == 0) {
         undisplay();
         cords = new int[]{r, c-1, r-1, c, r-1, c+1};
         display();
+        orientation = (orientation + 1)%4;
       }
     }
-    orientation = (orientation + 1)%4;
   }
 
   boolean isColliding() {
@@ -57,21 +67,33 @@ class SPiece extends Piece {
 
   boolean checkLeft() {
     if (orientation == 0) {
-      return checkCords(new int[]{r,c-2,r+1,c-1});
+      return checkCords(new int[]{r, c-2, r-1, c-1});
     }
     if (orientation == 1) {
-      return checkCords(new int[]{r,c-1,r-1,c-1,r+1,c});
+      return checkCords(new int[]{r, c-1, r-1, c-1, r+1, c});
     }
     if (orientation == 2) {
-      return checkCords(new int[]{r,c-1,r-1,c-2});
+      return checkCords(new int[]{r, c-1, r+1, c-2});
     }
     if (orientation == 3) {
-      return checkCords(new int[]{r,c-2,r-1,c-2,r+1,c-1});
+      return checkCords(new int[]{r, c-2, r-1, c-2, r+1, c-1});
     }
     return true;
   }
 
   boolean checkRight() {
+    if (orientation == 0) {
+      return checkCords(new int[]{r, c+1, r-1, c+2});
+    }
+    if (orientation == 1) {
+      return checkCords(new int[]{r, c+2, r-1, c+1, r+1, c+2});
+    }
+    if (orientation == 2) {
+      return checkCords(new int[]{r, c+2, r+1, c+1});
+    }
+    if (orientation == 3) {
+      return checkCords(new int[]{r, c+1, r-1, c, r+1, c+1});
+    }
     return true;
   }
 }
