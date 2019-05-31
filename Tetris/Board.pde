@@ -102,15 +102,17 @@ class Board {
   }
 
   Piece newPiece() {
-    int temp = r.nextInt(4);
+    int temp = r.nextInt(5);
     if (temp == 0) {
       return new IPiece(1, 5, this);
     } else if (temp == 1) {
       return new OPiece(0, 5, this);
     } else if (temp == 2) {
       return new LPiece(1, 5, this);
+    } else if (temp == 3) {
+      return new ZPiece(1, 5, this);
     } else {
-      return new SPiece(1, 5, this);
+      return new SPiece(1,5,this);
     }
   }
 

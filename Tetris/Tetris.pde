@@ -3,7 +3,7 @@ import java.io.*;
 
 Board TetrisBoard = new Board();
 Random r = new Random();
-int s = 2;
+int s = 4;
 
 
 class TetrisGame {
