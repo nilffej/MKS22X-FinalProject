@@ -21,7 +21,7 @@ class TPiece extends Piece {
         orientation = 1;
       }
     } else if (orientation == 1) {
-      if (c==0 && checkCords(new int[]{r+1, c+1, r, c+2})) {
+      if (!checkLeft() && checkCords(new int[]{r+1, c+1, r, c+2})) {
         undisplay();
         c++;
         cords = new int[]{r, c-1, r+1, c, r, c+1};
@@ -41,7 +41,7 @@ class TPiece extends Piece {
         orientation = 3;
       }
     } else { //orientation == 3
-      if (c == 9 && checkCords(new int[]{r, c-2, r+1, c-1})) {
+      if (!checkRight() && checkCords(new int[]{r, c-2, r+1, c-1})) {
         undisplay();
         c--;
         cords = new int[]{r, c-1, r, c+1, r-1, c};

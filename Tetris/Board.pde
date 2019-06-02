@@ -102,7 +102,7 @@ class Board {
   }
 
   Piece newPiece() {
-    int temp = r.nextInt(1)+5;
+    int temp = (int) (Math.random()*7);
     if (temp == 0) {
       return new IPiece(1, 5, this);
     } else if (temp == 1) {
@@ -110,16 +110,32 @@ class Board {
     } else if (temp == 2) {
       return new LPiece(1, 5, this);
     } else if (temp == 3) {
-      return new ZPiece(1, 5, this);
+      return new JPiece(1, 5, this);
     } else if (temp == 4) {
+      return new ZPiece(1, 5, this);
+    } else if (temp == 5) {
       return new SPiece(1, 5, this);
     } else {
-      return new TPiece(1, 5, this);
+      return new TPiece(1,5,this);
+    }
+  }
+  
+  void keyPressed(){
+    //if(key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6'){
+    if(key >= '1' && key <= '7'){
+      currentPiece.undisplay();
+      if(key == '1') currentPiece = new IPiece(1,5,this);
+      else if (key == '2') currentPiece = new OPiece (0,4,this);
+      else if (key == '3') currentPiece = new LPiece (1,5,this);
+      else if (key == '4') currentPiece = new JPiece(1,5,this);
+      else if (key == '5') currentPiece = new ZPiece(1,5,this);
+      else if (key == '6') currentPiece = new SPiece(1,5,this);
+      else if (key == '7') currentPiece = new TPiece(1,5,this);
     }
   }
 
   void display(int m, int s) {
-    if (m == s) {
+    if (m >= s) {
       playPiece(m, s);
       //show2D(grid);
       clearLine();

@@ -21,7 +21,7 @@ class SPiece extends Piece {
         orientation = (orientation + 1)%4;
       }
     } else if (orientation == 1) {
-      if (c == 0 && checkCords(new int[]{r, c+2, r+1, c })) {
+      if (!checkLeft() && checkCords(new int[]{r, c+2, r+1, c })) {
         undisplay();
         c++;
         cords = new int[]{r+1, c-1, r+1, c, r, c+1};
@@ -41,7 +41,7 @@ class SPiece extends Piece {
         orientation = (orientation + 1)%4;
       }
     } else { //orientation == 3
-      if (c == 9 && checkCords(new int[]{r, c-2, r-1, c})) {
+      if (!checkRight() && checkCords(new int[]{r, c-2, r-1, c})) {
         undisplay();
         c--;
         cords = new int[]{r, c-1, r-1, c, r-1, c+1};
