@@ -14,28 +14,42 @@ class ZPiece extends Piece {
 
   void rot() {
     if (orientation == 0) {
-      if (r > 0 && b.grid[r-1][c+1] == 0 && b.grid[r+1][c] == 0) {
+      if (checkCords(new int[]{r-1,c+1,r+1,c})){
         undisplay();
         cords = new int[]{r-1, c+1, r, c+1, r+1, c};
         display();
         orientation = 1;
       }
     } else if (orientation == 1) {
-      if (c > 0 && b.grid[r][c-1] == 0 && b.grid[r+1][c+1] == 0) {
+      if(!checkLeft() && checkCords(new int[]{r+1,c+1,r+1,c+2})){
+        undisplay();
+        c++;
+        cords = new int[]{r, c-1, r+1, c, r+1, c+1};
+        display();
+        orientation = 2;
+      }
+      else if (checkCords(new int[]{r,c-1,r+1,c+1})){
         undisplay();
         cords = new int[]{r, c-1, r+1, c, r+1, c+1};
         display();
         orientation = 2;
       }
     } else if (orientation == 2) {
-      if (r < b.grid.length-2 && b.grid[r-1][c] == 0 && b.grid[r+1][c-1] == 0) {
+      if (checkCords(new int[]{r-1,c,r+1,c-1})) {
         undisplay();
         cords = new int[]{r+1, c-1, r, c-1, r-1, c};
         display();
         orientation = 3;
       }
     } else { //orientation == 3
-      if (c < b.grid[0].length-1 && b.grid[r-1][c-1] == 0 && b.grid[r][c+1] == 0) {
+      if(!checkRight() && checkCords(new int[]{r-1,c-2,r-1,c-1})){
+        undisplay();
+        c--;
+        cords = new int[]{r-1, c-1, r-1, c, r, c+1};
+        display();
+        orientation = 0;
+      }
+      else if (checkCords(new int[]{r-1,c-1,r,c+1})){
         undisplay();
         cords = new int[]{r-1, c-1, r-1, c, r, c+1};
         display();
