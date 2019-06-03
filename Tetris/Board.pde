@@ -5,7 +5,7 @@ class Board {
   int[][] grid;
   int gridh, gridw;
   int score, lines, level, speed;
-  Piece currentPiece, savedPiece, nextPiece;
+  Piece currentPiece, savedPiece, nextPiece, ghostPiece;
   List<Integer> nextPieces;
   int[] pieceRange;
   Random r = new Random();
@@ -17,11 +17,12 @@ class Board {
     score = 0;
     lines = 0;
     level = 1;
-    nextPieces = Arrays.asList(new Integer[]{0,1,2,3,4,5,6,0,1,2,3,4,5,6});
+    nextPieces = Arrays.asList(new Integer[]{1,2,3,4,5,6,7,1,2,3,4,5,6,7});
     pieceRange = new int[]{1,4};
     Collections.shuffle(nextPieces.subList(0,7));
     currentPiece = newPiece(nextPieces.get(0));
-    
+    ghostPiece = newPiece(currentPiece.col);
+    ghostPiece.col*=10;
     for (int i = 0; i < grid[25].length; i++) {
       grid[25][i] = -1;
     }
@@ -49,6 +50,20 @@ class Board {
           fill(255, 80, 80);
         } else if (grid[x][y] == 7) {
           fill(204, 51, 255);
+        } else if (grid[x][y] == 10) {
+          fill(105, 255, 255,85);
+        } else if (grid[x][y] == 20) {
+          fill(105, 255, 255,85);
+        } else if (grid[x][y] == 30) {
+          fill(255, 153, 0,85);
+        } else if (grid[x][y] == 40) {
+          fill(51, 102, 204,85);
+        } else if (grid[x][y] == 50) {
+          fill(102, 255, 102,85);
+        } else if (grid[x][y] == 60) {
+          fill(255, 80, 80,85);
+        } else if (grid[x][y] == 70) {
+          fill(204, 51, 255,85);
         } else {
           fill(110, 110, 110);
         }
@@ -130,18 +145,18 @@ class Board {
   }
   
   Piece newPiece(int s){
-    if (s == 0) {
-      return new IPiece(1, 5, this);
-    } else if (s == 1) {
+    if (s == 1) {
       return new OPiece(0, 4, this);
     } else if (s == 2) {
-      return new LPiece(1, 5, this);
+      return new IPiece(1, 5, this);
     } else if (s == 3) {
-      return new JPiece(1, 5, this);
+      return new LPiece(1, 5, this);
     } else if (s == 4) {
-      return new ZPiece(1, 5, this);
+      return new JPiece(1, 5, this);
     } else if (s == 5) {
       return new SPiece(1, 5, this);
+    } else if (s == 6) {
+      return new ZPiece(1, 5, this);
     } else {
       return new TPiece(1,5,this);
     }
@@ -167,7 +182,20 @@ class Board {
       //show2D(grid);
       clearLine();
     }
-    
+    /*
+    currentPiece.undisplay();
+    ghostPiece.undisplay();
+    ghostPiece.cords = currentPiece.cords;
+    ghostPiece.r = currentPiece.r;
+    ghostPiece.c = currentPiece.c;
+    System.out.println("r: " + ghostPiece.r + " c: "+ ghostPiece.c + " cords: " + Arrays.toString(ghostPiece.cords));
+    while(!ghostPiece.isColliding()){
+      ghostPiece.moveDown();
+    }
+    ghostPiece.display();
+    currentPiece.display();
+    */
+    show2D(grid);
     showBoard();
     fill(255, 0, 0);
     textSize(50);

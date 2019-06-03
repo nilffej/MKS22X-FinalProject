@@ -60,16 +60,16 @@ class ZPiece extends Piece {
 
   boolean isColliding() {
     if (orientation == 0) {
-      return b.grid[r][c-1] != 0 || b.grid[r+1][c] != 0 || b.grid[r+1][c+1] != 0;
+      return !checkCords(new int[]{r,c-1,r+1,c,r+1,c+1});
     }
     if (orientation == 1) {
-      return b.grid[r+2][c] != 0 || b.grid[r+1][c+1] != 0;
+      return !checkCords(new int[]{r+2,c,r+1,c+1});
     }
     if (orientation == 2) {
-      return b.grid[r+1][c-1] != 0 || b.grid[r+2][c] != 0 || b.grid[r+2][c+1] != 0;
+      return !checkCords(new int[]{r+1,c-1,r+2,c,r+2,c+1});
     }
     //orientation == 3
-    return b.grid[r+2][c-1] != 0 || b.grid[r+1][c] != 0;
+    return !checkCords(new int[]{r+2,c-1,r+1,c});
   }
 
   boolean checkLeft() {

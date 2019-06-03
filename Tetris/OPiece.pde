@@ -7,7 +7,7 @@ class OPiece extends Piece {
   }
 
   boolean isColliding() { //return if the spaces under are empty
-    return b.grid[r+2][c]!=0 || b.grid[r+2][c+1]!=0;
+    return !checkCords(new int[]{r+2,c,r+2,c+1});
   }
 
   void rot() {

@@ -16,7 +16,7 @@ abstract class Piece {
     for(int i = 0; i < cords.length; i+= 2){
       int r = cords[i];
       int c = cords[i+1];
-      if(r < 0 || r > b.grid.length-1 || c < 0 || c > b.grid[0].length-1 || b.grid[r][c] != 0) return false;
+      if(r < 0 || r > b.grid.length-1 || c < 0 || c > b.grid[0].length-1 || (b.grid[r][c] != 0 && b.grid[r][c] != col*10)) return false;
     }
     return true;
   }
@@ -75,6 +75,7 @@ abstract class Piece {
 
   void display() {
     for (int i = 0; i < cords.length; i += 2) {
+      //System.out.println("r: "+cords[i] + " c: " + cords[i+1]);
       b.grid[cords[i]][cords[i+1]] = col;
     }
     b.grid[r][c] = col;
