@@ -6,6 +6,8 @@ class Board {
   int gridh, gridw;
   int score, lines, level, speed;
   Piece currentPiece, savedPiece, nextPiece;
+  List<Integer> nextPieces;
+  int[] pieceRange;
   Random r = new Random();
 
   Board() {
@@ -15,8 +17,11 @@ class Board {
     score = 0;
     lines = 0;
     level = 1;
-    currentPiece = newPiece();
-    nextPiece = newPiece();
+    nextPieces = Arrays.asList(new Integer[]{0,1,2,3,4,5,6,0,1,2,3,4,5,6});
+    pieceRange = new int[]{1,4};
+    Collections.shuffle(nextPieces.subList(0,7));
+    currentPiece = newPiece(nextPieces.get(0));
+    
     for (int i = 0; i < grid[25].length; i++) {
       grid[25][i] = -1;
     }
@@ -94,8 +99,12 @@ class Board {
 
   void playPiece(int m, int s) {
     if (currentPiece.isColliding()) {
-      currentPiece = nextPiece;
-      nextPiece = newPiece();
+      currentPiece = newPiece(nextPieces.get(pieceRange[0]));
+      pieceRange[0] = (pieceRange[0] + 1) % 14;
+      pieceRange[1] = (pieceRange[1] + 1) % 14;
+      int end = pieceRange[1];
+      if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
+      //System.out.println(Arrays.toString(nextPieces.toArray()));
     } else {
       currentPiece.moveDown();
     }
@@ -114,6 +123,24 @@ class Board {
     } else if (temp == 4) {
       return new ZPiece(1, 5, this);
     } else if (temp == 5) {
+      return new SPiece(1, 5, this);
+    } else {
+      return new TPiece(1,5,this);
+    }
+  }
+  
+  Piece newPiece(int s){
+    if (s == 0) {
+      return new IPiece(1, 5, this);
+    } else if (s == 1) {
+      return new OPiece(0, 4, this);
+    } else if (s == 2) {
+      return new LPiece(1, 5, this);
+    } else if (s == 3) {
+      return new JPiece(1, 5, this);
+    } else if (s == 4) {
+      return new ZPiece(1, 5, this);
+    } else if (s == 5) {
       return new SPiece(1, 5, this);
     } else {
       return new TPiece(1,5,this);
@@ -140,6 +167,7 @@ class Board {
       //show2D(grid);
       clearLine();
     }
+    
     showBoard();
     fill(255, 0, 0);
     textSize(50);
