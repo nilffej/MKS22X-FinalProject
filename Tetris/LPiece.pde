@@ -30,7 +30,7 @@ class LPiece extends Piece {
         display();
         orientation = 2;
       }
-      if (checkCords(new int[]{r+1,c-1,r,c-1,r,c+1})){
+      else if (checkCords(new int[]{r+1,c-1,r,c-1,r,c+1})){
         undisplay();
         cords = new int[]{r+1,c-1,r,c-1,r,c+1};
         display();
@@ -51,7 +51,7 @@ class LPiece extends Piece {
         display();
         orientation = 0;
       }
-      if (checkCords(new int[]{r,c-1,r,c+1,r-1,c+1})){
+      else if (checkCords(new int[]{r,c-1,r,c+1,r-1,c+1})){
         undisplay();
         cords = new int[]{r,c-1,r,c+1,r-1,c+1};
         display();
