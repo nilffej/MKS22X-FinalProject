@@ -19,6 +19,8 @@ void showNext() {
   for(int i = start, counter = 0; i < start + 4; i++, counter++){
     pushMatrix();
     translate(0,counter*60);
+    fill(110,110,110);
+    rect(0,0,60,60);
     if (TetrisBoard.nextPieces.get(i%14) == 1) {
       fill(255, 255, 102);
       rect(15, 15, 15, 15);
