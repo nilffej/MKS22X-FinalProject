@@ -142,7 +142,7 @@ void draw() {
   background(255);
   TetrisBoard.display(m, s);
   if (m >= s) {
-    s+=400;
+    s+=TetrisBoard.speed*1000;
   }
   showNext();
   showSaved();

@@ -20,11 +20,11 @@ class Board {
     lines = 0;
     score = 0;
     level = 1;
-    speed = 1;
-    nextPieces = Arrays.asList(new Integer[]{1,2,3,4,5,6,7,1,2,3,4,5,6,7});
+    speed = .8;
+    nextPieces = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7});
     nextPiece = 1;
-    Collections.shuffle(nextPieces.subList(0,7));
-    currentPiece = newPiece(nextPieces.get(0));
+    Collections.shuffle(nextPieces.subList(0, 7)); //randomizes the next pieces
+    currentPiece = newPiece(nextPieces.get(0)); //set up the current piece and the ghost piece
     ghostPiece = newPiece(currentPiece.col);
     ghostPiece.col*=10;
     hasSaved = false;
@@ -55,19 +55,19 @@ class Board {
         } else if (grid[x][y] == 7) {
           fill(204, 51, 255);
         } else if (grid[x][y] == 10) {
-          fill(105, 255, 255,85);
+          fill(105, 255, 255, 85);
         } else if (grid[x][y] == 20) {
-          fill(105, 255, 255,85);
+          fill(105, 255, 255, 85);
         } else if (grid[x][y] == 30) {
-          fill(255, 153, 0,85);
+          fill(255, 153, 0, 85);
         } else if (grid[x][y] == 40) {
-          fill(51, 102, 204,85);
+          fill(51, 102, 204, 85);
         } else if (grid[x][y] == 50) {
-          fill(102, 255, 102,85);
+          fill(102, 255, 102, 85);
         } else if (grid[x][y] == 60) {
-          fill(255, 80, 80,85);
+          fill(255, 80, 80, 85);
         } else if (grid[x][y] == 70) {
-          fill(204, 51, 255,85);
+          fill(204, 51, 255, 85);
         } else {
           fill(110, 110, 110);
         }
@@ -107,14 +107,27 @@ class Board {
       }
       if (space) {
         clearLine(r);
-        if (lines%10 == 0){
+        if (lines%10 == 0) {
           level++;
-          speed = Math.pow((0.8-((level-1)*.007)),level-1);
+          if (level == 2) speed = .72;
+          else if (level == 3) speed = .63;
+          else if (level == 4) speed = .55;
+          else if (level == 5) speed = .47;
+          else if (level == 6) speed = .38;
+          else if (level == 7) speed = .3;
+          else if (level == 8) speed = .22;
+          else if (level == 9) speed = .13;
+          else if (level == 10) speed = .1;
+          else if (level == 11) speed = .08;
+          else if (level == 14) speed = .07;
+          else if (level == 17) speed = .05;
+          else if (level == 20) speed = .03;
+          else if (level == 30) speed = .02;
         }
         count++;
       }
     }
-    if(count == 1) score += 40*level;
+    if (count == 1) score += 40*level;
     else if (count == 2) score += 100*level;
     else if (count == 3) score += 300*level;
     else if (count == 4) score += 1200*level;
@@ -135,7 +148,7 @@ class Board {
       ghostPiece.col*=10;
       nextPiece = (nextPiece + 1) % 14;
       int end = (nextPiece + 3) % 14;
-      if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
+      if (end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end, end+7));
       hasSaved = false;
       //System.out.println(Arrays.toString(nextPieces.toArray()));
     } else {
@@ -143,7 +156,7 @@ class Board {
     }
   }
 
-  Piece newPiece(int s){
+  Piece newPiece(int s) {
     if (s == 1) {
       return new OPiece(1, 4, this);
     } else if (s == 2) {
@@ -157,37 +170,35 @@ class Board {
     } else if (s == 6) {
       return new ZPiece(2, 4, this);
     } else {
-      return new TPiece(2,4,this);
+      return new TPiece(2, 4, this);
     }
   }
-  
-  void keyPressed(){
-    if(key >= '1' && key <= '7'){
+
+  void keyPressed() {
+    if (key >= '1' && key <= '7') {
       currentPiece.undisplay();
       ghostPiece.undisplay();
-      if(key == '1') currentPiece = new IPiece(1,5,this);
-      else if (key == '2') currentPiece = new OPiece (1,4,this);
-      else if (key == '3') currentPiece = new LPiece (2,4,this);
-      else if (key == '4') currentPiece = new JPiece(2,4,this);
-      else if (key == '5') currentPiece = new ZPiece(2,4,this);
-      else if (key == '6') currentPiece = new SPiece(2,4,this);
-      else if (key == '7') currentPiece = new TPiece(2,4,this);
+      if (key == '1') currentPiece = new IPiece(1, 5, this);
+      else if (key == '2') currentPiece = new OPiece (1, 4, this);
+      else if (key == '3') currentPiece = new LPiece (2, 4, this);
+      else if (key == '4') currentPiece = new JPiece(2, 4, this);
+      else if (key == '5') currentPiece = new ZPiece(2, 4, this);
+      else if (key == '6') currentPiece = new SPiece(2, 4, this);
+      else if (key == '7') currentPiece = new TPiece(2, 4, this);
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
-    }
-    else if(hasSaved == false && (key == 'c' || keyCode == SHIFT)){
+    } else if (hasSaved == false && (key == 'c' || keyCode == SHIFT)) {
       currentPiece.undisplay();
       ghostPiece.undisplay();
-      if(savedPiece == null){
+      if (savedPiece == null) {
         savedPiece = newPiece(currentPiece.col);
         currentPiece = newPiece(nextPieces.get(nextPiece));
         ghostPiece = newPiece(currentPiece.col);
         ghostPiece.col*=10;
         nextPiece = (nextPiece + 1) % 14;
         int end = (nextPiece+3)%14;
-        if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
-      }
-      else{
+        if (end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end, end+7));
+      } else {
         int savedCol = savedPiece.col;
         savedPiece = newPiece(currentPiece.col);
         currentPiece = newPiece(savedCol);
@@ -195,6 +206,22 @@ class Board {
         ghostPiece.col*=10;
       }
       hasSaved = true;
+    } else if (key == '0') {
+      level++;
+      if (level == 2) speed = .72;
+      else if (level == 3) speed = .63;
+      else if (level == 4) speed = .55;
+      else if (level == 5) speed = .47;
+      else if (level == 6) speed = .38;
+      else if (level == 7) speed = .3;
+      else if (level == 8) speed = .22;
+      else if (level == 9) speed = .13;
+      else if (level == 10) speed = .1;
+      else if (level == 11) speed = .08;
+      else if (level == 14) speed = .07;
+      else if (level == 17) speed = .05;
+      else if (level == 20) speed = .03;
+      else if (level == 30) speed = .02;
     }
   }
 
@@ -204,25 +231,26 @@ class Board {
       playPiece();
       //show2D(grid);
     }
-    
+
     currentPiece.undisplay();
     ghostPiece.undisplay();
-    System.arraycopy(currentPiece.cords,0,ghostPiece.cords,0,currentPiece.cords.length);
+    System.arraycopy(currentPiece.cords, 0, ghostPiece.cords, 0, currentPiece.cords.length);
     ghostPiece.r = currentPiece.r;
     ghostPiece.c = currentPiece.c;
     ghostPiece.orientation = currentPiece.orientation;
     //System.out.println("r: " + ghostPiece.r + " c: "+ ghostPiece.c + " cords: " + Arrays.toString(ghostPiece.cords));
-    while(!ghostPiece.isColliding()){
+    while (!ghostPiece.isColliding()) {
       ghostPiece.moveDown();
     }
     ghostPiece.display();
     currentPiece.display();
-    
+    textSize(50);
+    text("Lines: "+lines, 600, 200);
+    text("Level: "+level, 600, 300);
+    //text("Speed: "+speed, 600, 400);
     pushMatrix();
     translate(140, 40);
     showBoard();
     popMatrix();
-
-    
   }
 }

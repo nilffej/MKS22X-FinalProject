@@ -14,12 +14,10 @@ class OPiece extends Piece {
   }
 
   boolean checkLeft(){
-    if(c == 0 || b.grid[r][c-1] != 0 || b.grid[r+1][c-1] != 0) return false;
-    return true;
+    return checkCords(new int[]{r,c-1,r+1,c-1});
   }
 
   boolean checkRight(){
-    if(c == 8 || b.grid[r][c+2] != 0 || b.grid[r+1][c+2] != 0) return false;
-    return true;
+    return checkCords(new int[]{r,c+2,r+1,c+2});
   }
 }
