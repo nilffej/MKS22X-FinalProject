@@ -148,19 +148,19 @@ class Board {
   
   Piece newPiece(int s){
     if (s == 1) {
-      return new OPiece(0, 4, this);
+      return new OPiece(1, 4, this);
     } else if (s == 2) {
       return new IPiece(1, 5, this);
     } else if (s == 3) {
-      return new LPiece(1, 4, this);
+      return new LPiece(2, 4, this);
     } else if (s == 4) {
-      return new JPiece(1, 5, this);
+      return new JPiece(2, 4, this);
     } else if (s == 5) {
-      return new SPiece(1, 5, this);
+      return new SPiece(2, 4, this);
     } else if (s == 6) {
-      return new ZPiece(1, 5, this);
+      return new ZPiece(2, 4, this);
     } else {
-      return new TPiece(1,5,this);
+      return new TPiece(2,4,this);
     }
   }
   
@@ -170,12 +170,12 @@ class Board {
       currentPiece.undisplay();
       ghostPiece.undisplay();
       if(key == '1') currentPiece = new IPiece(1,5,this);
-      else if (key == '2') currentPiece = new OPiece (2,5,this);
+      else if (key == '2') currentPiece = new OPiece (1,4,this);
       else if (key == '3') currentPiece = new LPiece (2,4,this);
       else if (key == '4') currentPiece = new JPiece(2,4,this);
-      else if (key == '5') currentPiece = new ZPiece(2,5,this);
-      else if (key == '6') currentPiece = new SPiece(2,5,this);
-      else if (key == '7') currentPiece = new TPiece(2,5,this);
+      else if (key == '5') currentPiece = new ZPiece(2,4,this);
+      else if (key == '6') currentPiece = new SPiece(2,4,this);
+      else if (key == '7') currentPiece = new TPiece(2,4,this);
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
     }
