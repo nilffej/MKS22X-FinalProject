@@ -3,7 +3,7 @@ class SPiece extends Piece {
   orientation = 0 --> regular S shape center is the bottom right piece in the "s"
    orientation = 1 --> vertical S center is the middle left piece
    orientation = 2 --> regular S center is the top left
-   orientation = 3 --> certical s center is the middle right piece
+   orientation = 3 --> vertical s center is the middle right piece
    */
 
   SPiece(int r, int c, Board b) {
@@ -46,6 +46,7 @@ class SPiece extends Piece {
         c--;
         cords = new int[]{r, c-1, r-1, c, r-1, c+1};
         display();
+        orientation = (orientation + 1)%4;
       }
       else if (checkCords(new int []{r-1,c,r-1,c+1})){
         undisplay();
