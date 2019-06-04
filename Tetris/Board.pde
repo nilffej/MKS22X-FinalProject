@@ -35,7 +35,6 @@ class Board {
   }
 
   void showBoard() {
-    translate(100, 40);
     for (int x = 1; x < gridHeight(); x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
@@ -189,8 +188,8 @@ class Board {
   void display(int m, int s) {
     if (m >= s) {
       playPiece();
-      //show2D(grid);
       clearLine();
+      //show2D(grid);
     }
     
     currentPiece.undisplay();
@@ -205,8 +204,13 @@ class Board {
     }
     ghostPiece.display();
     currentPiece.display();
-
+    
+    pushMatrix();
+    translate(100, 40);
     showBoard();
+    popMatrix();
+    
+    /*
     fill(255, 0, 0);
     textSize(50);
     text("Orientation: "+currentPiece.orientation, 300, 100);
@@ -220,5 +224,7 @@ class Board {
     else if(savedPiece.col == 5) text("Saved: S", 300, 300);
     else if(savedPiece.col == 6) text("Saved: Z", 300, 300);
     else if(savedPiece.col == 7) text("Saved: T", 300, 300);
+    */
+    
   }
 }
