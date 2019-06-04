@@ -5,9 +5,9 @@ class Board {
   int[][] grid;
   int gridh, gridw;
   int score, lines, level, speed;
-  Piece currentPiece, savedPiece, nextPiece, ghostPiece;
+  Piece currentPiece, savedPiece, ghostPiece;
   List<Integer> nextPieces;
-  int[] pieceRange;
+  int nextPiece;
   Random r = new Random();
   boolean hasSaved;
 
@@ -19,7 +19,7 @@ class Board {
     lines = 0;
     level = 1;
     nextPieces = Arrays.asList(new Integer[]{1,2,3,4,5,6,7,1,2,3,4,5,6,7});
-    pieceRange = new int[]{1,4};
+    nextPiece = 1;
     Collections.shuffle(nextPieces.subList(0,7));
     currentPiece = newPiece(nextPieces.get(0));
     ghostPiece = newPiece(currentPiece.col);
@@ -115,12 +115,11 @@ class Board {
 
   void playPiece() {
     if (currentPiece.isColliding()) {
-      currentPiece = newPiece(nextPieces.get(pieceRange[0]));
+      currentPiece = newPiece(nextPieces.get(nextPiece));
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
-      pieceRange[0] = (pieceRange[0] + 1) % 14;
-      pieceRange[1] = (pieceRange[1] + 1) % 14;
-      int end = pieceRange[1];
+      nextPiece = (nextPiece + 1) % 14;
+      int end = (nextPiece + 3) % 14;
       if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
       hasSaved = false;
       //System.out.println(Arrays.toString(nextPieces.toArray()));
@@ -166,12 +165,11 @@ class Board {
       ghostPiece.undisplay();
       if(savedPiece == null){
         savedPiece = newPiece(currentPiece.col);
-        currentPiece = newPiece(nextPieces.get(pieceRange[0]));
+        currentPiece = newPiece(nextPieces.get(nextPiece));
         ghostPiece = newPiece(currentPiece.col);
         ghostPiece.col*=10;
-        pieceRange[0] = (pieceRange[0] + 1) % 14;
-        pieceRange[1] = (pieceRange[1] + 1) % 14;
-        int end = pieceRange[1];
+        nextPiece = (nextPiece + 1) % 14;
+        int end = (nextPiece+3)%14;
         if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
       }
       else{
