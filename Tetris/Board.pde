@@ -204,7 +204,7 @@ class Board {
     currentPiece.display();
     
     pushMatrix();
-    translate(100, 40);
+    translate(140, 40);
     showBoard();
     popMatrix();
     
