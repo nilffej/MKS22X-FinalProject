@@ -98,7 +98,7 @@ class Board {
     for (int r = 0; r < grid.length-1; r++) {
       boolean space = true;
       for (int c = 0; c < grid[r].length && space; c++) {
-        if (grid[r][c] == 0) space = false;
+        if (grid[r][c] == 0 || grid[r][c] == ghostPiece.col) space = false;
       }
       if (space) clearLine(r);
     }
@@ -115,6 +115,8 @@ class Board {
   void playPiece(int m, int s) {
     if (currentPiece.isColliding()) {
       currentPiece = newPiece(nextPieces.get(pieceRange[0]));
+      ghostPiece = newPiece(currentPiece.col);
+      ghostPiece.col*=10;
       pieceRange[0] = (pieceRange[0] + 1) % 14;
       pieceRange[1] = (pieceRange[1] + 1) % 14;
       int end = pieceRange[1];
@@ -150,7 +152,7 @@ class Board {
     } else if (s == 2) {
       return new IPiece(1, 5, this);
     } else if (s == 3) {
-      return new LPiece(1, 5, this);
+      return new LPiece(1, 4, this);
     } else if (s == 4) {
       return new JPiece(1, 5, this);
     } else if (s == 5) {
@@ -166,13 +168,16 @@ class Board {
     //if(key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6'){
     if(key >= '1' && key <= '7'){
       currentPiece.undisplay();
+      ghostPiece.undisplay();
       if(key == '1') currentPiece = new IPiece(1,5,this);
-      else if (key == '2') currentPiece = new OPiece (0,4,this);
-      else if (key == '3') currentPiece = new LPiece (1,5,this);
-      else if (key == '4') currentPiece = new JPiece(1,5,this);
-      else if (key == '5') currentPiece = new ZPiece(1,5,this);
-      else if (key == '6') currentPiece = new SPiece(1,5,this);
-      else if (key == '7') currentPiece = new TPiece(1,5,this);
+      else if (key == '2') currentPiece = new OPiece (2,5,this);
+      else if (key == '3') currentPiece = new LPiece (2,4,this);
+      else if (key == '4') currentPiece = new JPiece(2,4,this);
+      else if (key == '5') currentPiece = new ZPiece(2,5,this);
+      else if (key == '6') currentPiece = new SPiece(2,5,this);
+      else if (key == '7') currentPiece = new TPiece(2,5,this);
+      ghostPiece = newPiece(currentPiece.col);
+      ghostPiece.col*=10;
     }
   }
 
@@ -182,20 +187,21 @@ class Board {
       //show2D(grid);
       clearLine();
     }
-    /*
+    
     currentPiece.undisplay();
     ghostPiece.undisplay();
-    ghostPiece.cords = currentPiece.cords;
+    System.arraycopy(currentPiece.cords,0,ghostPiece.cords,0,currentPiece.cords.length);
     ghostPiece.r = currentPiece.r;
     ghostPiece.c = currentPiece.c;
-    System.out.println("r: " + ghostPiece.r + " c: "+ ghostPiece.c + " cords: " + Arrays.toString(ghostPiece.cords));
+    ghostPiece.orientation = currentPiece.orientation;
+    //System.out.println("r: " + ghostPiece.r + " c: "+ ghostPiece.c + " cords: " + Arrays.toString(ghostPiece.cords));
     while(!ghostPiece.isColliding()){
       ghostPiece.moveDown();
     }
     ghostPiece.display();
     currentPiece.display();
-    */
-    show2D(grid);
+    
+    //show2D(grid);    
     showBoard();
     fill(255, 0, 0);
     textSize(50);

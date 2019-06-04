@@ -65,7 +65,7 @@ class LPiece extends Piece {
       return !checkCords(new int[]{r+1,c-1,r+1,c,r+1,c+1});
     }
     if (orientation == 1) {
-      return !checkCords(new int[]{r+2,c,r+2,c+2});
+      return !checkCords(new int[]{r+2,c,r+2,c+1});
     }
     if (orientation == 2) {
       return !checkCords(new int[]{r+2,c-1,r+1,c,r+1,c+1});

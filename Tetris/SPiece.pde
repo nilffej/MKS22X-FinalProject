@@ -14,7 +14,7 @@ class SPiece extends Piece {
 
   void rot() {
     if (orientation == 0) {
-      if (b.grid[r][c+1] == 0 && b.grid[r+1][c+1] == 0) {
+      if (checkCords(new int[]{r,c+1,r+1,c+1})){
         undisplay();
         cords = new int[]{r-1, c, r, c+1, r+1, c+1};
         display();
@@ -27,14 +27,14 @@ class SPiece extends Piece {
         cords = new int[]{r+1, c-1, r+1, c, r, c+1};
         display();
         orientation = (orientation + 1)%4;
-      } else if (b.grid[r+1][c-1] == 0 && b.grid[r+1][c] == 0) {
+      } else if (checkCords(new int[]{r+1,c-1,r+1,c})){
         undisplay();
         cords = new int[]{r+1, c-1, r+1, c, r, c+1};
         display();
         orientation = (orientation + 1)%4;
       }
     } else if (orientation == 2) {
-      if (b.grid[r-1][c-1] == 0 && b.grid[r][c-1] == 0) {
+      if (checkCords(new int[]{r-1,c-1,r,c-1})){
         undisplay();
         cords = new int[]{r-1, c-1, r, c-1, r+1, c};
         display();
@@ -47,7 +47,7 @@ class SPiece extends Piece {
         cords = new int[]{r, c-1, r-1, c, r-1, c+1};
         display();
       }
-      if (b.grid[r-1][c] == 0 && b.grid[r-1][c+1] == 0) {
+      else if (checkCords(new int []{r-1,c,r-1,c+1})){
         undisplay();
         cords = new int[]{r, c-1, r-1, c, r-1, c+1};
         display();
