@@ -9,6 +9,7 @@ class Board {
   List<Integer> nextPieces;
   int[] pieceRange;
   Random r = new Random();
+  boolean hasSaved;
 
   Board() {
     grid = new int[26][10];
@@ -23,6 +24,7 @@ class Board {
     currentPiece = newPiece(nextPieces.get(0));
     ghostPiece = newPiece(currentPiece.col);
     ghostPiece.col*=10;
+    hasSaved = false;
     for (int i = 0; i < grid[25].length; i++) {
       grid[25][i] = -1;
     }
@@ -112,7 +114,7 @@ class Board {
     lines++;
   }
 
-  void playPiece(int m, int s) {
+  void playPiece() {
     if (currentPiece.isColliding()) {
       currentPiece = newPiece(nextPieces.get(pieceRange[0]));
       ghostPiece = newPiece(currentPiece.col);
@@ -121,31 +123,13 @@ class Board {
       pieceRange[1] = (pieceRange[1] + 1) % 14;
       int end = pieceRange[1];
       if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
+      hasSaved = false;
       //System.out.println(Arrays.toString(nextPieces.toArray()));
     } else {
       currentPiece.moveDown();
     }
   }
 
-  Piece newPiece() {
-    int temp = (int) (Math.random()*7);
-    if (temp == 0) {
-      return new IPiece(1, 5, this);
-    } else if (temp == 1) {
-      return new OPiece(0, 4, this);
-    } else if (temp == 2) {
-      return new LPiece(1, 5, this);
-    } else if (temp == 3) {
-      return new JPiece(1, 5, this);
-    } else if (temp == 4) {
-      return new ZPiece(1, 5, this);
-    } else if (temp == 5) {
-      return new SPiece(1, 5, this);
-    } else {
-      return new TPiece(1,5,this);
-    }
-  }
-  
   Piece newPiece(int s){
     if (s == 1) {
       return new OPiece(1, 4, this);
@@ -165,7 +149,6 @@ class Board {
   }
   
   void keyPressed(){
-    //if(key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6'){
     if(key >= '1' && key <= '7'){
       currentPiece.undisplay();
       ghostPiece.undisplay();
@@ -179,11 +162,33 @@ class Board {
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
     }
+    else if(hasSaved == false && (key == 'c' || keyCode == SHIFT)){
+      currentPiece.undisplay();
+      ghostPiece.undisplay();
+      if(savedPiece == null){
+        savedPiece = newPiece(currentPiece.col);
+        currentPiece = newPiece(nextPieces.get(pieceRange[0]));
+        ghostPiece = newPiece(currentPiece.col);
+        ghostPiece.col*=10;
+        pieceRange[0] = (pieceRange[0] + 1) % 14;
+        pieceRange[1] = (pieceRange[1] + 1) % 14;
+        int end = pieceRange[1];
+        if(end == 0 || end == 7) Collections.shuffle(nextPieces.subList(end,end+7));
+      }
+      else{
+        int savedCol = savedPiece.col;
+        savedPiece = newPiece(currentPiece.col);
+        currentPiece = newPiece(savedCol);
+        ghostPiece = newPiece(currentPiece.col);
+        ghostPiece.col*=10;
+      }
+      hasSaved = true;
+    }
   }
 
   void display(int m, int s) {
     if (m >= s) {
-      playPiece(m, s);
+      playPiece();
       //show2D(grid);
       clearLine();
     }
@@ -200,12 +205,20 @@ class Board {
     }
     ghostPiece.display();
     currentPiece.display();
-    
-    //show2D(grid);    
+
     showBoard();
     fill(255, 0, 0);
     textSize(50);
     text("Orientation: "+currentPiece.orientation, 300, 100);
     text("Lines cleared: "+lines, 300, 200);
+    
+    if (savedPiece == null) text("Saved: None",300, 300);
+    else if(savedPiece.col == 1) text("Saved: O", 300, 300);
+    else if(savedPiece.col == 2) text("Saved: I", 300, 300);
+    else if(savedPiece.col == 3) text("Saved: L", 300, 300);
+    else if(savedPiece.col == 4) text("Saved: J", 300, 300);
+    else if(savedPiece.col == 5) text("Saved: S", 300, 300);
+    else if(savedPiece.col == 6) text("Saved: Z", 300, 300);
+    else if(savedPiece.col == 7) text("Saved: T", 300, 300);
   }
 }
