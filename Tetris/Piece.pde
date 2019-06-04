@@ -62,6 +62,7 @@ abstract class Piece {
       while (!isColliding()) {
         moveDown();
       }
+      b.clearLine();
       b.playPiece();
     } else if (keyCode == DOWN) {
       moveDown();

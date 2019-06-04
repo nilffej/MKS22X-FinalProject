@@ -200,8 +200,8 @@ class Board {
 
   void display(int m, int s) {
     if (m >= s) {
-      playPiece();
       clearLine();
+      playPiece();
       //show2D(grid);
     }
     

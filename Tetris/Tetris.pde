@@ -5,7 +5,7 @@ import java.io.*;
 Board TetrisBoard;
 Random r;
 int s=2;
-int m,lastMillis,diff;
+int m, lastMillis, diff;
 
 
 void showNext() {
@@ -75,16 +75,15 @@ void showNext() {
 
 void showSaved() {
   pushMatrix();
-  translate(55,100);
-  fill(0,0,0);
+  translate(55, 100);
+  fill(0, 0, 0);
   textSize(20);
   textAlign(CENTER);
   text("HOLD", 30, -5);
   fill(110, 110, 110);
   rect(0, 0, 60, 60);
-  if(TetrisBoard.savedPiece == null){
-  }
-  else if (TetrisBoard.savedPiece.col == 1) {
+  if (TetrisBoard.savedPiece == null) {
+  } else if (TetrisBoard.savedPiece.col == 1) {
     fill(255, 255, 102);
     rect(15, 15, 15, 15);
     rect(15, 30, 15, 15);
@@ -153,25 +152,28 @@ void draw() {
 }
 
 void keyPressed() {
-  if(key == 'r'){
-    setup();
+  if (looping) {
+    if (key == 'r') {
+      setup();
+    }
+    TetrisBoard.keyPressed();
+    TetrisBoard.currentPiece.keyPressed();
   }
-  if(key == 'p'){
-    if(looping) {
+  if (key == 'p') {
+    if (looping) {
       noLoop();
       lastMillis = millis();
-      fill(110,110,110,200);
-      rect(-1,-1,801,601);
-      fill(255,255,255);
+      fill(110, 110, 110, 200);
+      rect(-1, -1, 801, 601);
+      fill(255, 255, 255);
       textSize(100);
       textAlign(CENTER);
-      text("PAUSED", 400,300);
-    }
-    else {
+      text("PAUSED", 400, 300);
+      textSize(40);
+      text("Press 'p' to unpause",400,350);
+    } else {
       diff += millis() - lastMillis;
       loop();
     }
   }
-  TetrisBoard.keyPressed();
-  TetrisBoard.currentPiece.keyPressed();
 }
