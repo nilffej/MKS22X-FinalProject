@@ -11,7 +11,7 @@ void showNext(List<Integer> queue) {
   fill(0, 0, 0);
   textSize(20);
   textAlign(CENTER);
-  text("NEXT", 30, -10);
+  text("NEXT", 30, -5);
   int test = 7;
   fill(110, 110, 110);
   rect(0, 0, 60, 60);
