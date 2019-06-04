@@ -23,7 +23,7 @@ class IPiece extends Piece {
         orientation = 1;
       }
     } else if (orientation == 1) {
-      if (c == 0) {
+      if (!checkLeft()) {
         if (checkCords(new int[]{r, c+1, r, c+2, r, c+3})) {
           undisplay();
           c+=1;
@@ -31,14 +31,7 @@ class IPiece extends Piece {
           display();
           orientation = 2;
         }
-      } else if (c == 1) {
-        if (checkCords(new int[]{r, c-1, r, c+1, r, c+1})) {
-          undisplay();
-          cords = new int[]{r, c-1, r, c+1, r, c+2};
-          display();
-          orientation = 2;
-        }
-      } else if (c == 9) {
+      } else if (!checkRight()) {
         if (checkCords(new int[]{r, c-1, r, c-2, r, c-3})) {
           undisplay();
           c-=2;
@@ -52,6 +45,13 @@ class IPiece extends Piece {
         cords = new int[]{r, c-1, r, c+1, r, c+2};
         display();
         orientation = 2;
+      } else if (c == 1) {
+        if (checkCords(new int[]{r, c-1, r, c+1, r, c+1})) {
+          undisplay();
+          cords = new int[]{r, c-1, r, c+1, r, c+2};
+          display();
+          orientation = 2;
+        }
       }
     } else if (orientation == 2) {
       if (checkCords(new int[]{r-2, c, r-1, c, r+1, c})) {
@@ -62,7 +62,7 @@ class IPiece extends Piece {
         orientation = 3;
       }
     } else { //orientation == 3
-      if (c == 0) {
+      if (!checkLeft()) {
         if (checkCords(new int[]{r, c+1, r, c+2, r, c+3})) {
           undisplay();
           c+=2;
@@ -70,17 +70,17 @@ class IPiece extends Piece {
           display();
           orientation = 0;
         }
-      } else if (c == 8) {
+      } else if (!checkRight()) {
         if (checkCords(new int[]{r, c-3, r, c-2, r, c-1})) {
           undisplay();
+          c-=1;
           cords = new int[]{r, c-2, r, c-1, r, c+1};
           display();
           orientation = 0;
         }
-      } else if (c == 9) {
+      } else if (!checkCords(new int[]{r,c+2})) {
         if (checkCords(new int[]{r, c-3, r, c-2, r, c-1})) {
           undisplay();
-          c-=1;
           cords = new int[]{r, c-2, r, c-1, r, c+1};
           display();
           orientation = 0;

@@ -1,9 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-Board TetrisBoard = new Board();
-Random r = new Random();
-int s = 2;
+
+Board TetrisBoard;
+Random r;
+int s=2;
+
 
 void showNext() {
 
@@ -129,6 +131,8 @@ void showSaved() {
 
 void setup() {
   size(800, 600);
+  TetrisBoard = new Board();
+  r = new Random();
 }
 
 void draw() {
@@ -140,9 +144,15 @@ void draw() {
   }
   showNext();
   showSaved();
+  fill(255, 0, 0);
+  textSize(50);
+  text("Score: "+TetrisBoard.score, 600, 100);
 }
 
 void keyPressed() {
+  if(key == 'r'){
+    setup();
+  }
   TetrisBoard.keyPressed();
   TetrisBoard.currentPiece.keyPressed();
 }

@@ -4,7 +4,8 @@ import java.io.*;
 class Board {
   int[][] grid;
   int gridh, gridw;
-  int score, lines, level, speed;
+  int score, lines, level;
+  double speed;
   Piece currentPiece, savedPiece, ghostPiece;
   List<Integer> nextPieces;
   int nextPiece;
@@ -17,7 +18,9 @@ class Board {
     gridw = 10;
     score = 0;
     lines = 0;
+    score = 0;
     level = 1;
+    speed = 1;
     nextPieces = Arrays.asList(new Integer[]{1,2,3,4,5,6,7,1,2,3,4,5,6,7});
     nextPiece = 1;
     Collections.shuffle(nextPieces.subList(0,7));
@@ -96,13 +99,25 @@ class Board {
   }
 
   void clearLine() {
+    int count = 0;
     for (int r = 0; r < grid.length-1; r++) {
       boolean space = true;
       for (int c = 0; c < grid[r].length && space; c++) {
         if (grid[r][c] == 0 || grid[r][c] == ghostPiece.col) space = false;
       }
-      if (space) clearLine(r);
+      if (space) {
+        clearLine(r);
+        if (lines%10 == 0){
+          level++;
+          speed = Math.pow((0.8-((level-1)*.007)),level-1);
+        }
+        count++;
+      }
     }
+    if(count == 1) score += 40*level;
+    else if (count == 2) score += 100*level;
+    else if (count == 3) score += 300*level;
+    else if (count == 4) score += 1200*level;
   }
 
   void clearLine(int row) {
@@ -207,22 +222,7 @@ class Board {
     translate(140, 40);
     showBoard();
     popMatrix();
-    
-    /*
-    fill(255, 0, 0);
-    textSize(50);
-    text("Orientation: "+currentPiece.orientation, 300, 100);
-    text("Lines cleared: "+lines, 300, 200);
-    
-    if (savedPiece == null) text("Saved: None",300, 300);
-    else if(savedPiece.col == 1) text("Saved: O", 300, 300);
-    else if(savedPiece.col == 2) text("Saved: I", 300, 300);
-    else if(savedPiece.col == 3) text("Saved: L", 300, 300);
-    else if(savedPiece.col == 4) text("Saved: J", 300, 300);
-    else if(savedPiece.col == 5) text("Saved: S", 300, 300);
-    else if(savedPiece.col == 6) text("Saved: Z", 300, 300);
-    else if(savedPiece.col == 7) text("Saved: T", 300, 300);
-    */
+
     
   }
 }
