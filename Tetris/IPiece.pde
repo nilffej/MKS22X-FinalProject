@@ -169,15 +169,10 @@ class IPiece extends Piece {
   }
 
   boolean checkRight() {
-    if (orientation == 0 && (c >= b.grid[0].length-2 || b.grid[r][c+2] != 0)) return false;
-    if (orientation == 2 && (c >= b.grid[0].length-3 || b.grid[r][c+3] != 0)) return false;
-    if (orientation == 1 || orientation == 3) {
-      for (int i =1; i < cords.length; i+=2) {
-        if (cords[i] >= b.grid[0].length-1 || b.grid[cords[i-1]][cords[i]+1]!=0 || 
-          c >= b.grid[0].length-1 || b.grid[r][c+1] != 0) return false;
-      }
-    }
-    return true;
+    if (orientation == 0) return checkCords(new int[]{r,c+2});
+    if (orientation == 1) return checkCords(new int[]{r-2,c+1,r-1,c+1,r,c+1,r+1,c+1});
+    if (orientation == 2) return checkCords(new int[]{r,c+3});
+    //orientation == 3
+    return checkCords(new int[]{r-1,c+1,r,c+1,r+1,c+1,r+2,c+1});
   }
-  
 }
