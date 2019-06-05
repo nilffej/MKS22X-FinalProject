@@ -146,27 +146,37 @@ void draw() {
   }
   showNext();
   showSaved();
-  for(int i = 0; i < TetrisBoard.grid[0].length; i++){
-    if(TetrisBoard.grid[0][i]!= 0) endGame();
-  }
   fill(255, 0, 0);
   textSize(50);
   text("Score: "+TetrisBoard.score, 600, 100);
+  for (int i = 0; i < TetrisBoard.grid[0].length; i++) {
+    if (TetrisBoard.grid[0][i]!= 0) endGame();
+  }
+
+  
 }
 
-void endGame(){
-  
+void endGame() {
+  noLoop();
+  fill(110, 110, 110, 210);
+  rect(-1, -1, 801, 601);
+  fill(255, 255, 255);
+  textSize(100);
+  textAlign(CENTER);
+  text("GAME OVER", 400, 300);
+  textSize(30);
+  text("Press 'r' to restart", 400, 350);
 }
 
 void keyPressed() {
   if (looping) {
-    if (key == 'r') {
-      setup();
-      loop();
-    }
     TetrisBoard.keyPressed();
     TetrisBoard.currentPiece.keyPressed();
   }
+  if (key == 'r') {
+      setup();
+      loop();
+    }
   if (key == 'p') {
     if (looping) {
       noLoop();
@@ -178,7 +188,7 @@ void keyPressed() {
       textAlign(CENTER);
       text("PAUSED", 400, 300);
       textSize(40);
-      text("Press 'p' to unpause",400,350);
+      text("Press 'p' to unpause", 400, 350);
     } else {
       diff += millis() - lastMillis;
       loop();

@@ -12,7 +12,7 @@ class Board {
   boolean hasSaved;
 
   Board() {
-    grid = new int[26][10];
+    grid = new int[27][10];
     gridh = 25;
     gridw = 10;
     score = 0;
@@ -25,17 +25,18 @@ class Board {
     Collections.shuffle(nextPieces.subList(0, 7)); //randomizes the next pieces
     currentPiece = newPiece(nextPieces.get(0)); //set up the current piece and the ghost piece
     currentPiece.moveDown();
+    currentPiece.moveDown();
     ghostPiece = newPiece(currentPiece.col);
     ghostPiece.col*=10;
     hasSaved = false;
-    for (int i = 0; i < grid[25].length; i++) {
-      grid[25][i] = -1;
+    for (int i = 0; i < grid[26].length; i++) {
+      grid[26][i] = -1;
     }
   }
 
 
   void showBoard() {
-    for (int x = 1; x < gridh; x++) {
+    for (int x = 2; x < gridh+1; x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
           fill(255, 255, 102);
@@ -177,6 +178,8 @@ class Board {
       else if (key == '6') currentPiece = new SPiece(1, 4, this);
       else if (key == '7') currentPiece = new TPiece(1, 4, this);
       currentPiece.moveDown();
+      currentPiece.moveDown();
+
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
     } else if (hasSaved == false && (key == 'c' || keyCode == SHIFT)) {
@@ -221,7 +224,7 @@ class Board {
     if (m >= s) {
       clearLine();
       playPiece();
-      show2D(grid);
+      //show2D(grid);
     }
     //System.out.println("r: " + currentPiece.r + " c: "+ currentPiece.c + " cords: " + Arrays.toString(currentPiece.cords));
     currentPiece.undisplay();

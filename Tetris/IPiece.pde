@@ -15,7 +15,7 @@ class IPiece extends Piece {
 
   void rot() {
     if (orientation == 0) {
-      if (checkCords(new int[]{r-1, c, r+1, c, r+2, c})) {
+      if (r > 2 && checkCords(new int[]{r-1, c, r+1, c, r+2, c})) {
         undisplay();
         r+=1; //0 -> 1
         cords = new int[]{r-2, c, r-1, c, r+1, c};
