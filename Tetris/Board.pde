@@ -36,40 +36,40 @@ class Board {
 
 
   void showBoard() {
-    fill(255,255,255);
-    rect(0,40,200,480);
+    fill(255, 255, 255);
+    rect(0, 40, 200, 480);
     for (int x = 2; x < gridh+1; x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
-          fill(255, 255, 102);
+          fill(240, 240, 0);
         } else if (grid[x][y] == 2) {
-          fill(105, 255, 255);
+          fill(0, 240, 240);
         } else if (grid[x][y] == 3) {
-          fill(255, 153, 0);
+          fill(240, 160, 0);
         } else if (grid[x][y] == 4) {
-          fill(51, 102, 204);
+          fill(0, 0, 240);
         } else if (grid[x][y] == 5) {
-          fill(102, 255, 102);
+          fill(0, 240, 0);
         } else if (grid[x][y] == 6) {
-          fill(255, 80, 80);
+          fill(240, 0, 0);
         } else if (grid[x][y] == 7) {
-          fill(204, 51, 255);
+          fill(160, 0, 240);
         } else if (grid[x][y] == 10) {
-          fill(105, 255, 255, 85);
+          fill(240, 240, 0, 85);
         } else if (grid[x][y] == 20) {
-          fill(105, 255, 255, 85);
+          fill(0, 240, 240, 85);
         } else if (grid[x][y] == 30) {
-          fill(255, 153, 0, 85);
+          fill(240, 160, 0, 85);
         } else if (grid[x][y] == 40) {
-          fill(51, 102, 204, 85);
+          fill(0, 0, 240, 85);
         } else if (grid[x][y] == 50) {
-          fill(102, 255, 102, 85);
+          fill(0, 240, 0, 85);
         } else if (grid[x][y] == 60) {
-          fill(255, 80, 80, 85);
+          fill(240, 0, 0, 85);
         } else if (grid[x][y] == 70) {
-          fill(204, 51, 255, 85);
+          fill(160, 0, 240, 85);
         } else {
-          fill(110, 110, 110);
+          fill(50, 50, 50);
         }
         rect(y*20, x*20, 20, 20);
       }
@@ -134,6 +134,7 @@ class Board {
     if (currentPiece.isColliding()) {
       currentPiece = newPiece(nextPieces.get(nextPiece));
       currentPiece.moveDown();
+      currentPiece.moveDown();
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
       nextPiece = (nextPiece + 1) % 14;
@@ -148,9 +149,9 @@ class Board {
 
   Piece newPiece(int s) {
     if (s == 1) {
-      return new OPiece(0,4,this);
+      return new OPiece(0, 4, this);
     } else if (s == 2) {
-      return new IPiece(0, 5, this);
+      return new IPiece(1, 5, this);
     } else if (s == 3) {
       return new LPiece(1, 4, this);
     } else if (s == 4) {
@@ -163,9 +164,8 @@ class Board {
       return new TPiece(1, 4, this);
     }
   }
-  
-  void endGame(){
-  
+
+  void endGame() {
   }
 
   void keyPressed() {
@@ -203,6 +203,8 @@ class Board {
         ghostPiece.col*=10;
       }
       hasSaved = true;
+      currentPiece.moveDown();
+      currentPiece.moveDown();
     } else if (key == '0') {
       level++;
       if (level == 2) speed = .72;
@@ -241,10 +243,6 @@ class Board {
     }
     ghostPiece.display();
     currentPiece.display();
-    textSize(50);
-    text("Lines: "+lines, 600, 200);
-    text("Level: "+level, 600, 300);
-    //text("Speed: "+speed, 600, 400);
     pushMatrix();
     translate(140, 20);
     showBoard();
