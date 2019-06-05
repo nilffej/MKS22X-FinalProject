@@ -9,7 +9,6 @@ class Board {
   Piece currentPiece, savedPiece, ghostPiece;
   List<Integer> nextPieces;
   int nextPiece;
-  Random r = new Random();
   boolean hasSaved;
 
   Board() {
@@ -25,6 +24,7 @@ class Board {
     nextPiece = 1;
     Collections.shuffle(nextPieces.subList(0, 7)); //randomizes the next pieces
     currentPiece = newPiece(nextPieces.get(0)); //set up the current piece and the ghost piece
+    currentPiece.moveDown();
     ghostPiece = newPiece(currentPiece.col);
     ghostPiece.col*=10;
     hasSaved = false;
@@ -33,12 +33,9 @@ class Board {
     }
   }
 
-  int gridHeight() {
-    return grid.length - 1;
-  }
 
   void showBoard() {
-    for (int x = 1; x < gridHeight(); x++) {
+    for (int x = 1; x < gridh; x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
           fill(255, 255, 102);
@@ -74,17 +71,6 @@ class Board {
         rect(y*20, x*20, 20, 20);
       }
     }
-  }
-
-  void randomFill() {
-    for (int x = 0; x < gridHeight(); x++) {
-      for (int y = 0; y < grid[x].length; y++) {
-        if (r.nextInt(3) == 1) {
-          grid[x][y] = r.nextInt(7) + 1;
-        }
-      }
-    }
-    show2D(grid);
   }
 
   void show2D(int[][] arr) {
@@ -144,6 +130,7 @@ class Board {
   void playPiece() {
     if (currentPiece.isColliding()) {
       currentPiece = newPiece(nextPieces.get(nextPiece));
+      currentPiece.moveDown();
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
       nextPiece = (nextPiece + 1) % 14;
@@ -158,33 +145,38 @@ class Board {
 
   Piece newPiece(int s) {
     if (s == 1) {
-      return new OPiece(1, 4, this);
+      return new OPiece(0,4,this);
     } else if (s == 2) {
-      return new IPiece(1, 5, this);
+      return new IPiece(0, 5, this);
     } else if (s == 3) {
-      return new LPiece(2, 4, this);
+      return new LPiece(1, 4, this);
     } else if (s == 4) {
-      return new JPiece(2, 4, this);
+      return new JPiece(1, 4, this);
     } else if (s == 5) {
-      return new SPiece(2, 4, this);
+      return new SPiece(1, 4, this);
     } else if (s == 6) {
-      return new ZPiece(2, 4, this);
+      return new ZPiece(1, 4, this);
     } else {
-      return new TPiece(2, 4, this);
+      return new TPiece(1, 4, this);
     }
+  }
+  
+  void endGame(){
+  
   }
 
   void keyPressed() {
     if (key >= '1' && key <= '7') {
       currentPiece.undisplay();
       ghostPiece.undisplay();
-      if (key == '1') currentPiece = new IPiece(1, 5, this);
-      else if (key == '2') currentPiece = new OPiece (1, 4, this);
-      else if (key == '3') currentPiece = new LPiece (2, 4, this);
-      else if (key == '4') currentPiece = new JPiece(2, 4, this);
-      else if (key == '5') currentPiece = new ZPiece(2, 4, this);
-      else if (key == '6') currentPiece = new SPiece(2, 4, this);
-      else if (key == '7') currentPiece = new TPiece(2, 4, this);
+      if (key == '1') currentPiece = new IPiece(0, 5, this);
+      else if (key == '2') currentPiece = new OPiece (0, 4, this);
+      else if (key == '3') currentPiece = new LPiece (1, 4, this);
+      else if (key == '4') currentPiece = new JPiece(1, 4, this);
+      else if (key == '5') currentPiece = new ZPiece(1, 4, this);
+      else if (key == '6') currentPiece = new SPiece(1, 4, this);
+      else if (key == '7') currentPiece = new TPiece(1, 4, this);
+      currentPiece.moveDown();
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
     } else if (hasSaved == false && (key == 'c' || keyCode == SHIFT)) {
@@ -229,9 +221,9 @@ class Board {
     if (m >= s) {
       clearLine();
       playPiece();
-      //show2D(grid);
+      show2D(grid);
     }
-
+    //System.out.println("r: " + currentPiece.r + " c: "+ currentPiece.c + " cords: " + Arrays.toString(currentPiece.cords));
     currentPiece.undisplay();
     ghostPiece.undisplay();
     System.arraycopy(currentPiece.cords, 0, ghostPiece.cords, 0, currentPiece.cords.length);

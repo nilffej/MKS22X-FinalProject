@@ -16,7 +16,7 @@ abstract class Piece {
     for(int i = 0; i < cords.length; i+= 2){
       int tempr = cords[i];
       int tempc = cords[i+1];
-      if(tempr < 0 || tempc < 0 || tempc > b.grid[0].length-1 || (b.grid[tempr][tempc] != 0 && b.grid[tempr][tempc] != col*10)) return false;
+      if(tempr < 1 || tempc < 0 || tempc > b.grid[0].length-1 || (b.grid[tempr][tempc] != 0 && b.grid[tempr][tempc] != col*10)) return false;
     }
     return true;
   }

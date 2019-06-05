@@ -146,15 +146,23 @@ void draw() {
   }
   showNext();
   showSaved();
+  for(int i = 0; i < TetrisBoard.grid[0].length; i++){
+    if(TetrisBoard.grid[0][i]!= 0) endGame();
+  }
   fill(255, 0, 0);
   textSize(50);
   text("Score: "+TetrisBoard.score, 600, 100);
+}
+
+void endGame(){
+  
 }
 
 void keyPressed() {
   if (looping) {
     if (key == 'r') {
       setup();
+      loop();
     }
     TetrisBoard.keyPressed();
     TetrisBoard.currentPiece.keyPressed();
