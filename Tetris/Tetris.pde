@@ -4,7 +4,7 @@ import java.io.*;
 
 Board TetrisBoard;
 Random r;
-int s = 10;
+int s;
 int m, lastMillis, diff;
 
 PFont font;
@@ -131,7 +131,7 @@ void showSaved() {
 }
 
 void showExtra() {
-  fill(255,0,0);
+  fill(230, 30, 30);
   textSize(25);
   textAlign(RIGHT);
   text("SCORE", 670, 265);
@@ -155,6 +155,7 @@ void showExtra() {
 }
 
 void setup() {
+  s = m - 4;
   size(900, 600);
   TetrisBoard = new Board();
   r = new Random();
@@ -162,16 +163,19 @@ void setup() {
   diff = 0;
   font = loadFont("yeet.vlw");
   textFont(font);
-  showExtra();
   background = loadImage("background.png");
   logo = loadImage("logo.png");
-  logo.resize(0,160);
+  logo.resize(0, 160);
   controls = loadImage("controls.png");
 }
 
 void draw() {
   int m = (millis()-diff);
   background(255);
+  image(background, 0, 0);
+  image(logo, 550, 50);
+  image(controls, 460, 375);
+  showExtra();
   TetrisBoard.display(m, s);
   if (m >= s) {
     s+=TetrisBoard.speed*1000;
@@ -181,22 +185,26 @@ void draw() {
   for (int i = 0; i < TetrisBoard.grid[0].length; i++) {
     if (TetrisBoard.grid[0][i]!= 0) endGame();
   }
-  image(background, 0, 0);
-  image(logo, 550, 50);
-  image(controls, 460, 375);
-  showExtra();
 }
 
 void endGame() {
   noLoop();
-  fill(110, 110, 110, 210);
-  rect(-1, -1, 801, 601);
+  fill(110, 110, 110, 230);
+  rect(-1, -1, width+1, height+1);
   fill(255, 255, 255);
   textSize(100);
   textAlign(CENTER);
-  text("GAME OVER", 400, 300);
+  text("GAME OVER", width/2, height/2-75);
   textSize(30);
-  text("Press 'r' to restart", 400, 350);
+  text("Press 'r' to restart", width/2, height/2-40);
+  textAlign(RIGHT);
+  text("SCORE", width/2-10, height/2+50);
+  text("LINES CLEARED", width/2-10, height/2+100);
+  text("LEVEL", width/2-10, height/2+150);
+  textAlign(LEFT);
+  text(TetrisBoard.score, width/2+10, height/2+50);
+  text(TetrisBoard.lines, width/2+10, height/2+100);
+  text(TetrisBoard.level, width/2+10, height/2+150);
 }
 
 void keyPressed() {
@@ -212,14 +220,14 @@ void keyPressed() {
     if (looping) {
       noLoop();
       lastMillis = millis();
-      fill(110, 110, 110, 200);
-      rect(-1, -1, 801, 601);
+      fill(110, 110, 110, 230);
+      rect(-1, -1, width+1, height+1);
       fill(255, 255, 255);
       textSize(100);
       textAlign(CENTER);
-      text("PAUSED", 400, 300);
+      text("PAUSED", width/2, height/2);
       textSize(40);
-      text("Press 'p' to unpause", 400, 350);
+      text("Press 'p' to unpause", width/2, height/2+50);
     } else {
       diff += millis() - lastMillis;
       loop();
