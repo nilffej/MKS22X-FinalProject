@@ -69,7 +69,7 @@ class Board {
         } else if (grid[x][y] == 70) {
           fill(160, 0, 240, 85);
         } else {
-          fill(50, 50, 50);
+          fill(40, 40, 40);
         }
         rect(y*20, x*20, 20, 20);
       }

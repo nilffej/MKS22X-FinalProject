@@ -8,8 +8,9 @@ int s = 10;
 int m, lastMillis, diff;
 
 PFont font;
-PImage img;
-PImage img2;
+PImage background;
+PImage logo;
+PImage controls;
 
 void showNext() {
   pushMatrix();
@@ -22,7 +23,7 @@ void showNext() {
   for (int i = start, counter = 0; i < start + 4; i++, counter++) {
     pushMatrix();
     translate(0, counter*60);
-    fill(50, 50, 50);
+    fill(40, 40, 40);
     rect(0, 0, 60, 60);
     if (TetrisBoard.nextPieces.get(i%14) == 1) {
       fill(240, 240, 0);
@@ -80,7 +81,7 @@ void showSaved() {
   textSize(20);
   textAlign(CENTER);
   text("HOLD", 30, -5);
-  fill(50, 50, 50);
+  fill(40, 40, 40);
   rect(0, 0, 60, 60);
   if (TetrisBoard.savedPiece == null) {
   } else if (TetrisBoard.savedPiece.col == 1) {
@@ -129,23 +130,48 @@ void showSaved() {
   popMatrix();
 }
 
+void showExtra() {
+  fill(255,0,0);
+  textSize(25);
+  textAlign(RIGHT);
+  text("SCORE", 670, 265);
+  text("LINES CLEARED", 670, 305);
+  text("LEVEL", 670, 345);
+  textAlign(LEFT);
+  text(TetrisBoard.score, 685, 265);
+  text(TetrisBoard.lines, 685, 305);
+  text(TetrisBoard.level, 685, 345);
+  fill(0, 0, 0);
+  textSize(25);
+  textAlign(LEFT);
+  text("Rotate", 515, 410);
+  text("Left", 515, 410+43*1);
+  text("Right", 515, 410+43*2);
+  text("Down", 515, 410+43*3);
+  text("Pause", 690, 410);
+  text("Restart", 690, 410+43*1);
+  text("Hold", 742, 410+43*2);
+  text("Drop", 765, 410+43*3);
+}
+
 void setup() {
-  size(800, 600);
+  size(900, 600);
   TetrisBoard = new Board();
   r = new Random();
   lastMillis = 0;
   diff = 0;
   font = loadFont("yeet.vlw");
   textFont(font);
-  img = loadImage("background.png");
-  img2 = loadImage("logo.png");
+  showExtra();
+  background = loadImage("background.png");
+  logo = loadImage("logo.png");
+  logo.resize(0,160);
+  controls = loadImage("controls.png");
 }
 
 void draw() {
   int m = (millis()-diff);
   background(255);
-  image(img, 0, 0);
-  image(img2,480,60,width/3,height/3);
   TetrisBoard.display(m, s);
   if (m >= s) {
     s+=TetrisBoard.speed*1000;
@@ -155,6 +181,10 @@ void draw() {
   for (int i = 0; i < TetrisBoard.grid[0].length; i++) {
     if (TetrisBoard.grid[0][i]!= 0) endGame();
   }
+  image(background, 0, 0);
+  image(logo, 550, 50);
+  image(controls, 460, 375);
+  showExtra();
 }
 
 void endGame() {
