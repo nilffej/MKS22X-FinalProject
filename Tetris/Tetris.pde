@@ -191,6 +191,8 @@ void draw() {
 
 void endGame() {
   noLoop();
+  gameOver = true;
+  lastMillis = millis();
   fill(110, 110, 110, 230);
   rect(-1, -1, width+1, height+1);
   fill(255, 255, 255);
