@@ -4,8 +4,10 @@ import java.io.*;
 
 Board TetrisBoard;
 Random r;
-int s;
-int m, lastMillis, diff;
+int s = 2;
+int m;
+int lastMillis, diff = 0;
+boolean gameOver;
 
 PFont font;
 PImage background;
@@ -144,6 +146,7 @@ void showExtra() {
   fill(0, 0, 0);
   textSize(25);
   textAlign(LEFT);
+  /*
   text("Rotate", 515, 410);
   text("Left", 515, 410+43*1);
   text("Right", 515, 410+43*2);
@@ -152,20 +155,20 @@ void showExtra() {
   text("Restart", 690, 410+43*1);
   text("Hold", 742, 410+43*2);
   text("Drop", 765, 410+43*3);
+  */
 }
 
 void setup() {
   size(900, 600);
   TetrisBoard = new Board();
   r = new Random();
-  lastMillis = 0;
-  diff = 0;
+  gameOver = false;
   font = loadFont("yeet.vlw");
   textFont(font);
   background = loadImage("background.png");
   logo = loadImage("logo.png");
   logo.resize(0, 160);
-  controls = loadImage("controls.png");
+  //controls = loadImage("controls.png");
 }
 
 void draw() {
@@ -173,7 +176,7 @@ void draw() {
   background(255);
   image(background, 0, 0);
   image(logo, 550, 50);
-  image(controls, 460, 375);
+  //image(controls, 460, 375);
   showExtra();
   TetrisBoard.display(m, s);
   if (m >= s) {
@@ -188,6 +191,8 @@ void draw() {
 
 void endGame() {
   noLoop();
+  gameOver = true;
+  lastMillis = millis();
   fill(110, 110, 110, 230);
   rect(-1, -1, width+1, height+1);
   fill(255, 255, 255);
@@ -212,6 +217,10 @@ void keyPressed() {
     TetrisBoard.currentPiece.keyPressed();
   }
   if (key == 'r') {
+    if(gameOver){
+      gameOver = false;
+      diff+=millis()-lastMillis;
+    }
     setup();
     loop();
   }
