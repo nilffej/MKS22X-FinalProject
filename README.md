@@ -8,14 +8,14 @@ The objective of Tetris is to score as many points as possible by clearing horiz
 
 ### Controls
 
-Up arrow key - Rotate
-Left arrow key - Left
-Right arrow key - Right
-Down arrow key - Soft drop
-Spacebar - Hard drop
-Shift or C - Hold piece
-P - Pause
-R - Restart
+- Up arrow key - Rotate
+- Left arrow key - Left
+- Right arrow key - Right
+- Down arrow key - Soft drop
+- Spacebar - Hard drop
+- Shift or C - Hold piece
+- P - Pause
+- R - Restart
 
 ## Development Log
 
