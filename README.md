@@ -131,3 +131,4 @@ The objective of Tetris is to score as many points as possible by clearing horiz
   - Created display and mini icons for pieces next in queue
   - Added background, logo, and control visuals
   - Changed visuals and UI for fluidity
+  - Finished README
