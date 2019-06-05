@@ -149,8 +149,6 @@ void draw() {
   }
   showNext();
   showSaved();
-  fill(255, 0, 0);
-  textSize(50);
   for (int i = 0; i < TetrisBoard.grid[0].length; i++) {
     if (TetrisBoard.grid[0][i]!= 0) endGame();
   }
