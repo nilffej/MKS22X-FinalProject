@@ -4,8 +4,10 @@ import java.io.*;
 
 Board TetrisBoard;
 Random r;
-int s;
-int m, lastMillis, diff;
+int s = 2;
+int m;
+int lastMillis, diff = 0;
+boolean gameOver;
 
 PFont font;
 PImage background;
@@ -155,18 +157,16 @@ void showExtra() {
 }
 
 void setup() {
-  s = m - 4;
   size(900, 600);
   TetrisBoard = new Board();
   r = new Random();
-  lastMillis = 0;
-  diff = 0;
+  gameOver = false;
   font = loadFont("yeet.vlw");
   textFont(font);
   background = loadImage("background.png");
   logo = loadImage("logo.png");
   logo.resize(0, 160);
-  controls = loadImage("controls.png");
+  //controls = loadImage("controls.png");
 }
 
 void draw() {
@@ -174,7 +174,7 @@ void draw() {
   background(255);
   image(background, 0, 0);
   image(logo, 550, 50);
-  image(controls, 460, 375);
+  //image(controls, 460, 375);
   showExtra();
   TetrisBoard.display(m, s);
   if (m >= s) {
@@ -213,6 +213,10 @@ void keyPressed() {
     TetrisBoard.currentPiece.keyPressed();
   }
   if (key == 'r') {
+    if(gameOver){
+      gameOver = false;
+      diff+=millis()-lastMillis;
+    }
     setup();
     loop();
   }
