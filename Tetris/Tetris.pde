@@ -146,7 +146,6 @@ void showExtra() {
   fill(0, 0, 0);
   textSize(25);
   textAlign(LEFT);
-  /*
   text("Rotate", 515, 410);
   text("Left", 515, 410+43*1);
   text("Right", 515, 410+43*2);
@@ -155,7 +154,6 @@ void showExtra() {
   text("Restart", 690, 410+43*1);
   text("Hold", 742, 410+43*2);
   text("Drop", 765, 410+43*3);
-  */
 }
 
 void setup() {
@@ -168,7 +166,7 @@ void setup() {
   background = loadImage("background.png");
   logo = loadImage("logo.png");
   logo.resize(0, 160);
-  //controls = loadImage("controls.png");
+  controls = loadImage("controls.png");
 }
 
 void draw() {
@@ -176,7 +174,7 @@ void draw() {
   background(255);
   image(background, 0, 0);
   image(logo, 550, 50);
-  //image(controls, 460, 375);
+  image(controls, 460, 375);
   showExtra();
   TetrisBoard.display(m, s);
   if (m >= s) {
