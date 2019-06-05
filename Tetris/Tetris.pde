@@ -155,7 +155,6 @@ void showExtra() {
 }
 
 void setup() {
-  s = m - 4;
   size(900, 600);
   TetrisBoard = new Board();
   r = new Random();
