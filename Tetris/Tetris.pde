@@ -146,6 +146,7 @@ void showExtra() {
   fill(0, 0, 0);
   textSize(25);
   textAlign(LEFT);
+  /*
   text("Rotate", 515, 410);
   text("Left", 515, 410+43*1);
   text("Right", 515, 410+43*2);
@@ -154,6 +155,7 @@ void showExtra() {
   text("Restart", 690, 410+43*1);
   text("Hold", 742, 410+43*2);
   text("Drop", 765, 410+43*3);
+  */
 }
 
 void setup() {
