@@ -5,7 +5,9 @@ import java.io.*;
 Board TetrisBoard;
 Random r;
 int s=2;
-int m, lastMillis, diff;
+int m;
+int lastMillis, diff = 0;
+boolean gameOver;
 
 
 void showNext() {
@@ -133,8 +135,7 @@ void setup() {
   size(800, 600);
   TetrisBoard = new Board();
   r = new Random();
-  lastMillis = 0;
-  diff = 0;
+  gameOver = false;
 }
 
 void draw() {
@@ -158,6 +159,8 @@ void draw() {
 
 void endGame() {
   noLoop();
+  gameOver = true;
+  lastMillis = millis();
   fill(110, 110, 110, 210);
   rect(-1, -1, 801, 601);
   fill(255, 255, 255);
@@ -174,6 +177,10 @@ void keyPressed() {
     TetrisBoard.currentPiece.keyPressed();
   }
   if (key == 'r') {
+    if(gameOver){
+      gameOver = false;
+      diff += millis() - lastMillis;
+    }
       setup();
       loop();
     }
