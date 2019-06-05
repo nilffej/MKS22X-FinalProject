@@ -61,31 +61,19 @@ class LPiece extends Piece {
   }
 
   boolean isColliding() {
-    if (orientation == 0) {
-      return !checkCords(new int[]{r+1,c-1,r+1,c,r+1,c+1});
-    }
-    if (orientation == 1) {
-      return !checkCords(new int[]{r+2,c,r+2,c+1});
-    }
-    if (orientation == 2) {
-      return !checkCords(new int[]{r+2,c-1,r+1,c,r+1,c+1});
-    }
+    if (orientation == 0) return !checkCords(new int[]{r+1,c-1,r+1,c,r+1,c+1});
+    if (orientation == 1) return !checkCords(new int[]{r+2,c,r+2,c+1});
+    if (orientation == 2) return !checkCords(new int[]{r+2,c-1,r+1,c,r+1,c+1});
     //orientation == 3
     return !checkCords(new int[]{r,c-1,r+2,c});
   }
 
   boolean checkLeft() {
-    if(orientation == 0){
-      return !(c <= 1 || b.grid[r][c-2] != 0 || b.grid[r-1][c] != 0);
-    }
-    if(orientation == 1){
-      return !(c <= 0 || b.grid[r-1][c-1] != 0 || b.grid[r][c-1] != 0 || b.grid[r+1][c-1] != 0);
-    }
-    if(orientation == 2){
-      return !(c <= 1 || b.grid[r][c-2] != 0 || b.grid[r+1][c-2] != 0);
-    }
+    if(orientation == 0) return checkCords(new int[]{r,c-2,r-1,c});
+    if(orientation == 1) return checkCords(new int[]{r-1,c-1,r,c-1,r+1,c-1});
+    if(orientation == 2) return checkCords(new int[]{r,c-2,r+1,c-2});
     //orientation = 3
-    return !(c <= 1 || b.grid[r-1][c-2] != 0 || b.grid[r][c-1] != 0 || b.grid [r+1][c-1] !=0);
+    return checkCords(new int[]{r-1,c-2,r,c-1,r+1,c-1});
   }
 
   boolean checkRight() {

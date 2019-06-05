@@ -61,43 +61,25 @@ class JPiece extends Piece {
   }
 
   boolean isColliding() {
-    if (orientation == 0) {
-      return !checkCords(new int[]{r+1,c-1,r+1,c,r+1,c+1});
-    }
-    if (orientation == 1) {
-      return !checkCords(new int[]{r+2,c,r,c+1});
-    }
-    if (orientation == 2) {
-      return !checkCords(new int[]{r+1,c-1,r+1,c,r+2,c+1});
-    }
+    if (orientation == 0) return !checkCords(new int[]{r+1,c-1,r+1,c,r+1,c+1});
+    if (orientation == 1) return !checkCords(new int[]{r+2,c,r,c+1});
+    if (orientation == 2) return !checkCords(new int[]{r+1,c-1,r+1,c,r+2,c+1});
     //orientation == 3
     return !checkCords(new int[]{r+2,c-1,r+2,c});
   }
 
   boolean checkLeft() {
-    if(orientation == 0){
-      return checkCords(new int[]{r-1,c-2,r,c-2});
-    }
-    if(orientation == 1){
-      return checkCords(new int[]{r-1,c-1,r,c-1,r+1,c-1});
-    }
-    if(orientation == 2){
-      return checkCords(new int[]{r,c-2,r+1,c});
-    }
+    if(orientation == 0) return checkCords(new int[]{r-1,c-2,r,c-2});
+    if(orientation == 1) return checkCords(new int[]{r-1,c-1,r,c-1,r+1,c-1});
+    if(orientation == 2) return checkCords(new int[]{r,c-2,r+1,c});
     //orientation = 3
     return checkCords(new int[]{r-1,c-1,r,c-1,r+1,c-2});
   }
 
   boolean checkRight() {
-    if(orientation == 0){
-      return checkCords(new int[]{r-1,c,r,c+2});
-    }
-    if(orientation == 1){
-      return checkCords(new int[]{r-1,c+2,r,c+1,r+1,c+1});
-    }
-    if(orientation == 2){
-      return checkCords(new int[]{r,c+2,r+1,c+2});
-    }
+    if(orientation == 0) return checkCords(new int[]{r-1,c,r,c+2});
+    if(orientation == 1) return checkCords(new int[]{r-1,c+2,r,c+1,r+1,c+1});
+    if(orientation == 2) return checkCords(new int[]{r,c+2,r+1,c+2});
     //orientation = 3
     return checkCords(new int[]{r-1,c+1,r,c+1,r+1,c+1});
   }

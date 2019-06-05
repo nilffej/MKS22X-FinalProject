@@ -9,6 +9,7 @@ int m, lastMillis, diff;
 
 PFont font;
 PImage img;
+PImage img2;
 
 void showNext() {
   pushMatrix();
@@ -137,12 +138,14 @@ void setup() {
   font = loadFont("yeet.vlw");
   textFont(font);
   img = loadImage("background.png");
+  img2 = loadImage("logo.png");
 }
 
 void draw() {
   int m = (millis()-diff);
   background(255);
   image(img, 0, 0);
+  image(img2,480,60,width/3,height/3);
   TetrisBoard.display(m, s);
   if (m >= s) {
     s+=TetrisBoard.speed*1000;
