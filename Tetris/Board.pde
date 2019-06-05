@@ -134,6 +134,7 @@ class Board {
     if (currentPiece.isColliding()) {
       currentPiece = newPiece(nextPieces.get(nextPiece));
       currentPiece.moveDown();
+      currentPiece.moveDown();
       ghostPiece = newPiece(currentPiece.col);
       ghostPiece.col*=10;
       nextPiece = (nextPiece + 1) % 14;
@@ -203,6 +204,8 @@ class Board {
         ghostPiece.col*=10;
       }
       hasSaved = true;
+      currentPiece.moveDown();
+      currentPiece.moveDown();
     } else if (key == '0') {
       level++;
       if (level == 2) speed = .72;
