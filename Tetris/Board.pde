@@ -36,6 +36,8 @@ class Board {
 
 
   void showBoard() {
+    fill(255,255,255);
+    rect(0,40,200,480);
     for (int x = 2; x < gridh+1; x++) {
       for (int y = 0; y < grid[x].length; y++) {
         if (grid[x][y] == 1) {
@@ -244,7 +246,7 @@ class Board {
     text("Level: "+level, 600, 300);
     //text("Speed: "+speed, 600, 400);
     pushMatrix();
-    translate(140, 40);
+    translate(140, 20);
     showBoard();
     popMatrix();
   }
