@@ -1,6 +1,28 @@
 # Tetris
 A recreation of the classic game of Tetris in Processing
 
+Controls:
+
+Left arrow key - move Left
+Right arrow key - move right
+up arrow key - rotate
+down arrow key - soft drop
+spacebar - hard drop
+shift or c - save piece
+p - pause
+
+"CHEATS"
+changes current piece:
+  1 - I
+  2 - O
+  3 - L
+  4 - J
+  5 - Z
+  6 - S
+  7 - T
+0 - increases level by 1
+
+
 5/20
 Michael:
   Created constructor for the Board and put in the basic fields it should have
